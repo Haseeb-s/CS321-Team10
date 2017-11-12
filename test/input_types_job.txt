@@ -1,0 +1,18 @@
+@1 Signing up									- signing up for an applicant
+@7 Post a job									- post a job by admin office
+@2 Viewing available jobs						- viewing available jobs by an applicant
+@3 Submit a job application						- submit a job application by an applicant
+@4 Reviewing a job application					- reviewing a job application by an applicant
+@5 Dashboard									- showing dashboard of an applicant
+@6 Withdraw an application						- withdraw an application by an applicant
+@10 View pending job applications				- view all pending job applications by admin office
+@17 View Pending application for one job		- view job applications for one specific job by admin office
+@11 Set up interviews							- set up interviews by admin office
+@8 Remove a job									- remove a job by admin office (without hiring anyone)
+@16 Close a job with hiring						- close a job with hiring someone by admin office 
+@9 Modify a job									- edit a job posting by admin office
+@12 Monthly report								- viewing monthly report by admin office
+@13 Expiration Signal
+@14 Month end signal
+@15 Year end signal
+@18 View a specific job							- viewing a specific job by an applicant
