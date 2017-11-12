@@ -28,8 +28,10 @@ Paul Brown
     1. Switch to the development branch `git checkout development`
     2. Merge your changes into development `git merge YOURNAME`
 
-- If you would like to save your branch changes to github
-    1. Commit all your changes `git add .`
+- If you would like to save changes from a branch to GitHub
+    1. Add your changes to the repository `git add .`
+    2. Commit your changes `git commit -m "DESCRIBE YOUR CHANGES"`
+    3. Push to GitHub `git push origin BRANCHNAME`
 
 
 ![Branching Setup](/doc/branching.png?raw=true "Branching Setup")
