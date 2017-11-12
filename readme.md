@@ -22,11 +22,14 @@ Paul Brown
 - Use a branch with your own name
     1. Update your local repository `git pull`
     2. Switch to development `git checkout development`
-    3. Create a repo with your own name `git checkout -b NAME`
+    3. Create a repo with your own name `git checkout -b YOURNAME`
 
 - Merge your changes into the development branch at least daily
     1. Switch to the development branch `git checkout development`
-    2. 
+    2. Merge your changes into development `git merge YOURNAME`
+
+- If you would like to save your branch changes to github
+    1. Commit all your changes `git add .`
 
 
 ![Branching Setup](/doc/branching.png?raw=true "Branching Setup")
