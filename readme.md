@@ -18,6 +18,8 @@ Paul Brown
 - Push changes to repo at least daily
 
 
+![Branching Setup](/doc/branching.png?raw=true "Branching Setup")
+
 ## Testing
 - Will be setup by Mathias
 
