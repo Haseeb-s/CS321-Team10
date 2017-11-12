@@ -25,6 +25,8 @@ Paul Brown
     3. Create a repo with your own name `git checkout -b NAME`
 
 - Merge your changes into the development branch at least daily
+    1. Switch to the development branch `git checkout development`
+    2. 
 
 
 ![Branching Setup](/doc/branching.png?raw=true "Branching Setup")
