@@ -1,6 +1,11 @@
 package entities;
-
 import java.time.LocalDateTime;
+
+
+/**
+ * The entitiy storing the information relating to a single job application.
+ * @author Mathias Wiesbauer
+ */
 
 public class Application {
     private String resume;
@@ -35,7 +40,7 @@ public class Application {
         this.status = status;
     }
 
-    public string getStatus() {
+    public String getStatus() {
         return status;
     }
 
@@ -51,6 +56,5 @@ public class Application {
     public String toString() {
         return "Status: " + status + " Date Applied : " + dateApplied;
     }
-
 
 }

@@ -1,22 +1,22 @@
 package coordinators;
 
+/**
+ * This is the coordinator handling all interactions with the client.
+ *
+ * @author Mathias Wiesbauer
+ **/
 
 public class JobSystemCoordinator {
     /**
-     * The God class handling the interaction with the client.
+     * Calls the correct methods based on the instruction ID.
+     * Also passes the parameters to the method.
      *
-     * @author Mathias Wiesbauer
-     */
-
+     * @param instructionID the ID of the instruction to be called
+     * @param inst the array of parameters passed
+     * @return a String will be returned indicating the instructions success or failure
+     **/
     public static String callInstruction(int instructionID, String[] inst) {
-        /**
-         * Calls the correct methods based on the instruction id provided, and
-         * passes the parameters to the method.
-         *
-         * @param instructionID the ID of the instruction to be called
-         * @param inst the array of parameters passed
-         * @return a String will be returned indicating the instruction success or failure
-        **/
+
 
         String message = "";
         switch(instructionID) {
@@ -80,13 +80,14 @@ public class JobSystemCoordinator {
         return message;
         } // END callInstruction
 
-        // @1 SIGN UP
+
+        /**
+        * Coordinates the signup process in the system.
+        * @param inst The string array containing the 6 elements required for signup.
+        * @return success or failure message to be printed.
+        */
         public static String signUp(String[] inst) {
-            /**
-             * Sign up, handles the signup of a new users
-             * @return message whether the signup was successful or not will be passed back
-             * to the calling method.
-             */
+
             String name = inst[1];
             String email = inst[2];
             String phone = inst[3];
@@ -97,15 +98,19 @@ public class JobSystemCoordinator {
             return "@1 SUCCESS SIGN UP";
         }
 
-        // @2 VIEW AVAILABLE JOBS
+        /**
+        * Returns all available jobs stored in the system.
+        * @return success or failure message to be printed.
+        */
         public static String viewAvailableJobs() {
-            /**
-             * Returns all available jobs in the system.
-             */
             return "@2 100 AVAILABLE JOBS";
         }
 
-        // @3 SUBMIT JOB APPLICATION
+        /**
+        * Submit a job application to the system
+        * @param inst string array contains the 4 elements needed to create a new job.
+        * @return success or failure message to be printed.
+        */
         public static String submitJobApplication(String[] inst) {
             String email = inst[1];
             String jobID = inst[2];
@@ -114,7 +119,11 @@ public class JobSystemCoordinator {
             return "@3 SUBMITTED APPLICATION";
         }
 
-        // @4 REVIEW JOB APPLICATION
+        /**
+        * Review a particular job application.
+        * @param inst string array contains the 2 elements needed to select an application.
+        * @return success or failure message to be printed.
+        */
         public static String reviewJobApplication(String[] inst) {
             String email = inst[1];
             String jobID = inst[2];
@@ -123,14 +132,22 @@ public class JobSystemCoordinator {
         }
 
 
-        // @5 DASHBOARD
+        /**
+        * Displays the dashboard information for a particular user.
+        * @param inst string array containing the paramter needed to select the relevant information.
+        * @return string containing the data to be displayed.
+        */
         public static String viewDashboard(String[] inst) {
             String email = inst[1];
 
             return "@5 VIEW DASHBOARD";
         }
 
-        // @6 WITHDRAW AN APPLICATION
+        /**
+        * Allows an applicant to withdraw an application.
+        * @param inst string array containign the 2 paramters needed to select an application.
+        * @return success or failure message to be printed.
+        */
         public static String withdrawApplication(String[] inst) {
             String email = inst[1];
             String jobID = inst[2];
@@ -138,8 +155,11 @@ public class JobSystemCoordinator {
             return "@6 WITHDRAWING APPLICATION";
         }
 
-
-        // @7 POST A JOB
+        /**
+        * Add a new Job opening to the system.
+        * @param inst string array containing the 7 parameters needed to create a new job posting.
+        * @return success or failure message to be printed.
+        */
         public static String postJob(String inst[]) {
             String jobID = inst[1];
             String jobTitle = inst[2];
@@ -152,14 +172,22 @@ public class JobSystemCoordinator {
             return "@7 POSTING JOB";
         }
 
-        //@8 REMOVE A JOB
+        /**
+        * Removing a job from the system.
+        * @param inst contains the parameter needed to select a job in the system.
+        * @return success or failure message to be printed.
+        */
         public static String removeJob(String inst[]) {
             String jobID = inst[1];
 
             return "@8 REMOVE A JOB";
         }
 
-        // @9 MODIFY A JOB
+        /**
+        * Allows the modification of an existin job application.
+        * @param inst string array containing the parameters needed to modify a job application.
+        * @return success or failure message to be printed.
+        */
         public static String modifyJob(String inst[]) {
             String jobID = inst[1];
             String jobTitle = inst[2];
@@ -172,12 +200,19 @@ public class JobSystemCoordinator {
             return "@9 MODIFYING JOB";
         }
 
-        // @10 VIEW PENDING JOB APPLICATIONS
+        /**
+        * Prints a list of all pending job applications.
+        * @return all pending job applications.
+        */
         public static String viewPendingJobApplications() {
             return "@10 VIEW PENDING JOB APPLICATIONS";
         }
 
-        // @11 SETUP INTERVIEWS
+        /**
+        * Sets up interviews for a candidate for a particular job application
+        * @param inst string array contains the parameters needed to setup the interviews.
+        * @return success or failure message to be printed.
+        */
         public static String setupInterviews(String[] inst) {
             String jobID = inst[1];
             String email = inst[2];
@@ -185,32 +220,50 @@ public class JobSystemCoordinator {
             return "@11 SETUP INTERVIEWS";
         }
 
-        // @12 MONTHLY REPORT
+        /**
+        * Generate a monthly report.
+        * @param inst string array containing the month formatted as 11/17
+        * @return the monthly report to be printed.
+        */
         public static String monthlyReport(String[] inst) {
             String month = inst[1];      // FORMATTED AS 11/17
 
             return "@12 MONTHLY REPORT";
         }
 
-        // @13 EXPIRATION SIGNAL
+        /**
+        * Sends the expiration signal to the system to expire reports older than the passed in date.
+        * @param inst string array containg the expiration date formatted as 11/20/2017
+        * @return success or failure message to be printed.
+        */
         public static String expirationSignal(String[] inst) {
             String expirationDate = inst[1];  // FORMATTED AS 11/20/2017
 
             return "@13 EXPIRATION SIGNAL";
         }
 
-        // @14 MONTH END SIGNAL
+        /**
+        * Triggers reporting activity at the end of every month.
+        * @return success or failure message to be printed.
+        */
         public static String monthEndSignal() {
             return "@14 MONTH END SIGNAL";
         }
 
-        // @15 MONTH END SIGNAL
+        /**
+        * Triggers reporting activity at the end of every year.
+        * @return success or failure message to be printed.
+        */
         public static String yearEndSignal() {
             return "@15 YEAR END SIGNAL";
         }
 
 
-        // @16 CLOSE JOB WITH HIRING
+        /**
+        * When hiring an applicant for a job posting close the job.
+        * @param inst string array containing the jobID  and email
+        * @return success or failure message to be printed.
+        */
         public static String closeJobWithHiring(String[] inst) {
             String jobID = inst[1];
             String email = inst[2];
@@ -218,14 +271,22 @@ public class JobSystemCoordinator {
             return "@16 CLOSE JOB WITH HIRING";
         }
 
-        // @17 VIEW PENDING JOB APPLICATIONS
+        /**
+        * Displays all pending job applications
+        * @param inst string array containing the jobID
+        * @return all pending job applications or error message.
+        */
         public static String viewPendingJobApplications(String[] inst) {
             String jobID = inst[1];
 
             return "@17 VIEW PENDING JOB APPLICATIONS";
         }
 
-        // @18 VIEW A SPECIFIC JOB
+        /**
+        * View a particulatr job in the system
+        * @param inst string array containing the jobID
+        * @return a job listing or an error message.
+        */
         public static String viewJob(String[] inst) {
             String jobID = inst[1];
 

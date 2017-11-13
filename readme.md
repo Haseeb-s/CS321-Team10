@@ -15,17 +15,18 @@ Paul Brown
 
 You can run the program from the `src` directory with the following command.
 
-    ```
-    javac FwClient.java
-    java FwClient ../test/job_sample-input.txt
-    ```
+    `javac FwClient.java`
+    `java FwClient ../test/job_sample-input.txt`
 
-### Creating JavaDoc
+
+### JavaDoc
+
+The JavaDoc documentation is stored in the `doc` directory. Use the `doc/index.html` file to view.
 
 The following command will create JavaDoc Documentation and store the output in the `doc` directory.
 Run the command from within the `src` directory.
 
-`javadoc -d ../doc ./coordinators/*.java ./entities/*.java ./managers/*.java`
+`javadoc -d ../doc ./coordinators/*.java ./entities/*.java ./managers/*.java -author`
 
 
 ## Branching Setup
