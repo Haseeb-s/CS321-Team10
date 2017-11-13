@@ -2,7 +2,22 @@ package coordinators;
 
 
 public class JobSystemCoordinator {
+    /**
+     * The God class handling the interaction with the client.
+     *
+     * @author Mathias Wiesbauer
+     */
+
     public static String callInstruction(int instructionID, String[] inst) {
+        /**
+         * Calls the correct methods based on the instruction id provided, and
+         * passes the parameters to the method.
+         *
+         * @param instructionID the ID of the instruction to be called
+         * @param inst the array of parameters passed
+         * @return a String will be returned indicating the instruction success or failure
+        **/
+
         String message = "";
         switch(instructionID) {
             case 1:     // SIGNING UP
@@ -67,6 +82,11 @@ public class JobSystemCoordinator {
 
         // @1 SIGN UP
         public static String signUp(String[] inst) {
+            /**
+             * Sign up, handles the signup of a new users
+             * @return message whether the signup was successful or not will be passed back
+             * to the calling method.
+             */
             String name = inst[1];
             String email = inst[2];
             String phone = inst[3];
@@ -79,6 +99,9 @@ public class JobSystemCoordinator {
 
         // @2 VIEW AVAILABLE JOBS
         public static String viewAvailableJobs() {
+            /**
+             * Returns all available jobs in the system.
+             */
             return "@2 100 AVAILABLE JOBS";
         }
 

@@ -10,6 +10,7 @@ Haseeb Shuaib
 Paul Brown
 
 ## Documentation
+
 ### Running the Program
 
 You can run the program from the `src` directory with the following command.
@@ -18,6 +19,14 @@ You can run the program from the `src` directory with the following command.
     javac FwClient.java
     java FwClient ../test/job_sample-input.txt
     ```
+
+### Creating JavaDoc
+
+The following command will create JavaDoc Documentation and store the output in the `doc` directory.
+Run the command from within the `src` directory.
+
+`javadoc -d ../doc ./coordinators/*.java ./entities/*.java ./managers/*.java`
+
 
 ## Branching Setup
 - Use a branch with your own name
