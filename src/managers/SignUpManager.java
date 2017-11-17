@@ -2,6 +2,12 @@ package managers;
 import entities.Applicant;
 import entities.Payment;
 import java.util.ArrayList;
+
+/**
+ * The sign up manager will deal with the sign up process of the system and hold the applicants of
+ * the system
+ * @author Kevin Silvera
+ */
 public class SignUpManager {
     ArrayList<Applicant> applicants = new ArrayList<>();
     Applicant currentApplicant;
