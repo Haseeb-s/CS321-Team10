@@ -40,7 +40,7 @@ public class SignUpManager {
      * @return true if the payment is passed otherwise false
      */
     public boolean processPayment(String credit, String exp){
-        //Process the payment that is given by the credit card and expiration date
+        //Create a payment instance that will hold the given credit card and expiration date
         //If a successful payment happens then return true and save payment information in payment
         //else return false
         return false;
