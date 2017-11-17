@@ -95,6 +95,12 @@ public class JobSystemCoordinator {
             String creditCard = inst[5];
             String expirationDate = inst[6];
 
+            // CREATE A SIGNUP MANAGER INSTANCE
+            // - CREATE THE APPLICANT
+            //  - IF CREATION SUCCESSFUL (APPLICANT DOES NOT EXIST)
+            //   - PROCESS PAYMENT
+            //  - ELSE RETURN MESSAGE THAT THE APPLICANT DOES EXIST
+
             return "@1 SUCCESS SIGN UP";
         }
 
@@ -103,6 +109,10 @@ public class JobSystemCoordinator {
         * @return success or failure message to be printed.
         */
         public static String viewAvailableJobs() {
+
+            // FROM THE HOB MANAGER SHOW GET THE JOB LIST
+            // FILTER BY AVAILABLE JOBS
+            // DISPLAY
             return "@2 100 AVAILABLE JOBS";
         }
 
@@ -116,6 +126,13 @@ public class JobSystemCoordinator {
             String jobID = inst[2];
             String coverLetter = inst[3];
             String resume = inst[4];
+
+            // GET THE APPLICATION MANAGER INSTANCE
+            // SUBMIT AN APPLICATION TO THE APPLICAITON MANAGER INSTANCE
+            // - IF APPLICANT DOES NOT EXIST OR APPLICATION ALREADY IN SYSTEM
+            //    - RETURN ERROR
+            // - ELSE RETURN SUCCESS MESSAGE
+
             return "@3 SUBMITTED APPLICATION";
         }
 
@@ -127,6 +144,11 @@ public class JobSystemCoordinator {
         public static String reviewJobApplication(String[] inst) {
             String email = inst[1];
             String jobID = inst[2];
+
+            // FROM THE APPLICATION MANAGER INSTANCE
+            // FIND AN APPLICATION WITH THE INPUT PARAMETERS
+            // - IF APPLICATION IS IN THE SYSTEM RETURN
+            // - ELSE PRINT ERROR MESSAGE
 
             return "@4 REVIEW APPLICATION";
         }
@@ -140,6 +162,12 @@ public class JobSystemCoordinator {
         public static String viewDashboard(String[] inst) {
             String email = inst[1];
 
+            // SHOW THE DASHBOARD FOR THE USER
+            // LIST ALL JOBS THE USER HAS APPLIED TO
+            // GET THE APPLICATION MANAGER INSTANCE
+            // FIND ALL APPLICATIONS FOR A PARTICULAR USER
+            // PRINT THE APPLICATIONS
+
             return "@5 VIEW DASHBOARD";
         }
 
@@ -151,6 +179,12 @@ public class JobSystemCoordinator {
         public static String withdrawApplication(String[] inst) {
             String email = inst[1];
             String jobID = inst[2];
+
+            // GET THE APPLICATION INSTANCE
+            // FIND THE APPLICATION WITH THE PARAMETERS
+            // - IF AN APPLICATION WAS FOUND
+            //  - WITHDRAW APPLICATION
+            // - ELSE SHOW ERROR MESSAGE THAT APPLICATION IS NOT IN SYSTEM
 
             return "@6 WITHDRAWING APPLICATION";
         }
@@ -169,6 +203,11 @@ public class JobSystemCoordinator {
             String expirationDate = inst[6];
             String contactEmail = inst[7];
 
+            // GET JOB MANAGER INSTANCE
+            // - IF JOB IS NOT YET IN THE SYSTEM
+            //  - ADD JOB
+            // - ELSE PRINT ERROR
+
             return "@7 POSTING JOB";
         }
 
@@ -179,6 +218,11 @@ public class JobSystemCoordinator {
         */
         public static String removeJob(String inst[]) {
             String jobID = inst[1];
+
+            // GET JOB MANAGER INSTANCE
+            // - IF JOB IS IN THE SYSTEM
+            //  - REMOVE JOB
+            // - ELSE PRINT ERROR
 
             return "@8 REMOVE A JOB";
         }
@@ -197,6 +241,11 @@ public class JobSystemCoordinator {
             String expirationDate = inst[6];
             String contactEmail = inst[7];
 
+            // GET JOB MANAGER INSTANCE
+            // - IF JOB IS IN SYSTEM
+            //  - MODIFY
+            // - ELSE PRINT ERROR
+
             return "@9 MODIFYING JOB";
         }
 
@@ -204,7 +253,13 @@ public class JobSystemCoordinator {
         * Prints a list of all pending job applications.
         * @return all pending job applications.
         */
-        public static String viewPendingJobApplications() {
+        public static String viewPendingJobApplications()
+        {
+
+            // GET APPLICATION MANAGER INSTANCE
+            // GET ALL PENDING JOB APPLICATIONS
+            // PRINT
+
             return "@10 VIEW PENDING JOB APPLICATIONS";
         }
 
@@ -217,6 +272,11 @@ public class JobSystemCoordinator {
             String jobID = inst[1];
             String email = inst[2];
 
+            // GET APPLICATION MANAGER INSTANCE
+            // - IF THE APPLICATION EXISTS IN THE SYSTEM
+            //  - CALL THE SETUP INTERVIEWS METHOD
+            // - ELSE RETURN ERROR
+
             return "@11 SETUP INTERVIEWS";
         }
 
@@ -228,16 +288,29 @@ public class JobSystemCoordinator {
         public static String monthlyReport(String[] inst) {
             String month = inst[1];      // FORMATTED AS 11/17
 
+            // GET REPORT MANAGER INSTANCE
+            // - GET TOTAL JOBS CREATED
+            // - GET POST FILLED JOBS
+            // - GET NO LONGER AVAILABLE JOBS
+            // - GET AVG APPLICANTS
+            // ....
+
             return "@12 MONTHLY REPORT";
         }
 
         /**
-        * Sends the expiration signal to the system to expire reports older than the passed in date.
+        * Sends the expiration signal to the system to expire jobs older than the passed in date.
         * @param inst string array containg the expiration date formatted as 11/20/2017
         * @return success or failure message to be printed.
         */
         public static String expirationSignal(String[] inst) {
             String expirationDate = inst[1];  // FORMATTED AS 11/20/2017
+
+            // GET JOB MANAGER INSTANCE AND APPLICATION MANAGER INSTANCE
+            // ITERATE OVER JOB LIST
+            // - IF A JOB IS OLDER THAN THE DATE
+            //  - CHECK IF JOB HAS AN APPLICATION
+            //    - IF JOB HAS NO APPLICATION CLOSE AND MARK AS NO LONGER AVAIL.
 
             return "@13 EXPIRATION SIGNAL";
         }
@@ -250,11 +323,19 @@ public class JobSystemCoordinator {
             return "@14 MONTH END SIGNAL";
         }
 
+            // GET TIMER INSTANCE
+            // CALL THE MONTH SIGNAL
+
+
         /**
         * Triggers reporting activity at the end of every year.
         * @return success or failure message to be printed.
         */
         public static String yearEndSignal() {
+
+            // GET TIMER INSTANCE
+            // CALL YEAR END SIGNAL
+
             return "@15 YEAR END SIGNAL";
         }
 
@@ -268,6 +349,13 @@ public class JobSystemCoordinator {
             String jobID = inst[1];
             String email = inst[2];
 
+            // GET JOB MANAGER AND APPLICATION MANAGER INSTANCE
+            // GET REPORT MANAGER INSTANCE
+
+            // CLOSE JOB
+            // UPDATE REPORT MANAGER STATS
+            // REMOVE APPLICATIONS ASSOCIATED WITH JOB
+
             return "@16 CLOSE JOB WITH HIRING";
         }
 
@@ -278,6 +366,10 @@ public class JobSystemCoordinator {
         */
         public static String viewPendingJobApplications(String[] inst) {
             String jobID = inst[1];
+
+            // GET APPLICATION MANAGER
+            // CALL PENDING JOB APPLICATION METHOD
+            // PRINT LIST
 
             return "@17 VIEW PENDING JOB APPLICATIONS";
         }
@@ -290,6 +382,10 @@ public class JobSystemCoordinator {
         public static String viewJob(String[] inst) {
             String jobID = inst[1];
 
+            // GET THE JOB MANAGER INSTANCE
+            // FIND A JOB WITH THE JOB ID IN THE JOB LIST
+            // - IF JOB WAS FOUND PRINT
+            // - ELSE PRINT ERROR
             return "@18 VIEW A SPECIFIC JOB";
         }
 
