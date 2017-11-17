@@ -1,3 +1,4 @@
+package managers;
 /**
  *  ReportManager communicates with other classes to generate a readable report
  *  containing information pertaining to job postings.
@@ -12,6 +13,7 @@ public class ReportManager{
     private int numberofJobCreated, currentNumberOfJobs, jobPostingsFilled, jobsNoLongerAvailable,
         numJobListingsStudents, numJobListingsStaff, numJobListingsFaculty;
     private float avgNumApps, avgNumPostFilled, avgNumAppsAvailJobs;
+
 
     private ReportManager(){
     /*
