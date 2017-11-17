@@ -35,6 +35,14 @@ public class Payment{
     }
 
     /**
+     * Will get the expiration date for the applicant credit card
+     * @return the expiration date for the specified user
+     */
+    public String getExpirationDate(){
+        return "";
+    }
+
+    /**
      * Will set the credit card information from the user if error happens
      * @param expirationDate will hold the user's input for the expiration date
      */
