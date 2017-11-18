@@ -92,9 +92,8 @@ public class Job {
      * @param jobID        unique ID for the job
      * @param jobDescrip   job description
      * @param salary       salary for this job ( XX.XX for hourly)
-     * @param job          the date the job starts
      */
-    public Job createJob(String contactEmail, String jobType, String jobID, String jobDescrip, Float salary, LocalDate job) {
+    public Job createJob(String contactEmail, String jobType, String jobID, String jobDescrip, Float salary) {
         /*
             prompt user for email, job type, jobID, description, salary, job
             set appropriate fields for email, jobtype, jobID, description, salary, job
