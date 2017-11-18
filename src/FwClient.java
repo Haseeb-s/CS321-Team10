@@ -16,11 +16,8 @@ public class FwClient {
 
     public static void executeInstruction(String [] ins) {
         int instrType = Integer.parseInt(ins[0]);
-        System.out.println(JobSystemCoordinator.callInstruction(instrType, ins));
+        JobSystemCoordinator.callInstruction(instrType, ins);
 
-        //System.out.println("Instruction type " + instrType);
-        //for (int i = 0; i < ins.length; i++) {
-        //    System.out.println(ins[i]);
-        //}
+
     }
 }

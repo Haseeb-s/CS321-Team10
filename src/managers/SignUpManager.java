@@ -39,6 +39,10 @@ public class SignUpManager {
     public Applicant addApplicant(String name, String email, String phone,
                                   String address, String creditCard, String expirationDate) {
 
+        for applic
+
+        Applicant applicant = ;
+        return applicant;
     }
 
     /**

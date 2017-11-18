@@ -5,6 +5,8 @@ import managers.JobManager;
 import managers.ReportManager;
 import managers.SignUpManager;
 import managers.Timer;
+import entities.Application;
+import entities.Applicant;
 
 /**
  * This is the coordinator handling all interactions with the client.
@@ -13,6 +15,12 @@ import managers.Timer;
  **/
 
 public class JobSystemCoordinator {
+    private static ApplicationManager appManager = new ApplicationManager();
+    private static JobManager jobManager = new JobManager();
+    private static ReportManager reportManager = new ReportManager();
+    private static SignUpManager signUpManager = new SignUpManager();
+    public static Timer timer = new Timer();
+
     /**
      * Calls the correct methods based on the instruction ID.
      * Also passes the parameters to the method.
@@ -22,11 +30,7 @@ public class JobSystemCoordinator {
      * @return a String will be returned indicating the instructions success or failure
      **/
     public static String callInstruction(int instructionID, String[] inst) {
-        ApplicationManager appManager = new ApplicationManager();
-        JobManager jobManager = new JobManager();
-        ReportManager reportManager = new ReportManager();
-        SignUpManager signUpManager = new SignUpManager();
-        Timer timer = new Timer();
+
 
 
         String message = "";
@@ -106,9 +110,22 @@ public class JobSystemCoordinator {
             String creditCard = inst[5];
             String expirationDate = inst[6];
 
-            signUpManager(name, email, phone, address, creditCard, expirationDate);
+            String error = "==================SIGN UP FAILURE==================\n" +
+                    "User exists with given email address!";
+
+
+
             // CREATE A SIGNUP MANAGER INSTANCE
             // - CREATE THE APPLICANT
+            try {
+                Applicant newApplicant = signUpManager.addApplicant(name, email, phone, address, creditCard, expirationDate);
+            } catch (Exception e){
+                System.out.println(error);
+            }
+
+
+
+
             //  - IF CREATION SUCCESSFUL (APPLICANT DOES NOT EXIST)
             //   - PROCESS PAYMENT
             //  - ELSE RETURN MESSAGE THAT THE APPLICANT DOES EXIST
