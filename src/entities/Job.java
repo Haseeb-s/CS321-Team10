@@ -11,6 +11,7 @@ package entities;
 
 import java.time.LocalDate;
 import coordinators.JobSystemCoordinator;
+import java.time.format.DateTimeFormatter;
 
 public class Job {
     public String jobName, contactEmail, jobType, jobID, jobDescrip, salary;
@@ -53,7 +54,10 @@ public class Job {
         this.jobID = jobID;
         this.jobDescrip = jobDescrip;
         this.salary = salary;
-        this.expDate = LocalDate.parse(expDate);
+        this.currentStatus = "AVAILABLE";
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
+        this.expDate = LocalDate.parse(expDate, formatter);
     }
 
     /**
