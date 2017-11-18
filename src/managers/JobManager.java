@@ -94,9 +94,12 @@ public class JobManager{
         //Will then add it to a String array
         //then remove all those jobs in the String array
         //return true if found
+        String[] expiredJobs = new String[];
         for(int i=0; i < jobs.size(); i++){
             currentJob = jobs.get(i);
-            if(currentJob.getExpData().compareTo(JobSystemCoordinator.timer.getCurrentDate());
+            if(currentJob.getExpData().compareTo(JobSystemCoordinator.timer.getCurrentDate())==0){
+
+            }
         }
         return false;
     }
