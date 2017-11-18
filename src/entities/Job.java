@@ -9,13 +9,13 @@
 package entities;
 
 
-import java.time.LocalDateTime;
-import managers.
+import java.time.LocalDate;
+import coordinators.JobSystemCoordinator;
 
 public class Job {
     private String contactEmail, currentStatus, jobType, jobID, jobDescrip;
     private double salary;
-    private LocalDateTime expDate;
+    private LocalDate expDate;
 
     private enum status {AVAILABLE, FILLED, WITHDRAWN, EXPIRED};
     private int numberofApplicants;
@@ -36,7 +36,7 @@ public class Job {
         jobID = "";
         jobDescrip = "";
         salary = -1.0;
-        expDate = ;
+        expDate = JobSystemCoordinator.timer.getCurrentDate().plusYears(1);
     }
 
     /**
@@ -70,7 +70,7 @@ public class Job {
      *
      * @return The experation date of this job
      */
-    private LocalDateTime getExpData() {
+    private LocalDate getExpData() {
         // returns expDate
         return expDate;
     }
@@ -80,7 +80,7 @@ public class Job {
      *
      * @return The unique ID assigned to this job
      */
-    private int getNumApplicants() { // return numberOfApplicants
+    public int getNumApplicants() { // return numberOfApplicants
         return numberofApplicants;
     }
 
@@ -94,11 +94,13 @@ public class Job {
      * @param salary       salary for this job ( XX.XX for hourly)
      * @param job          the date the job starts
      */
-    public void createJob(String contactEmail, String jobType, String jobID, String jobDescrip, Float salary, LocalDateTime job) {
+    public Job createJob(String contactEmail, String jobType, String jobID, String jobDescrip, Float salary, LocalDate job) {
         /*
             prompt user for email, job type, jobID, description, salary, job
             set appropriate fields for email, jobtype, jobID, description, salary, job
          */
+        Job newJob = new Job();
+        return newJob;
     }
 
     /**
@@ -106,9 +108,9 @@ public class Job {
      *
      * @return The current status pertaining to this job
      */
-    private String getStatus() {
+    public String getStatus() {
         // return current status
-        return status;
+        return currentStatus;
     }
 
     /**
@@ -122,7 +124,7 @@ public class Job {
      * @param setDate      set new expiration date for the job
      * @return The unique ID assigned to this job
      */
-    private void modJob(String contactEmail, String jobType, String jobDescrip, float salary, LocalDateTime setDate) {
+    public void modJob(String contactEmail, String jobType, String jobDescrip, float salary, LocalDate setDate) {
         /*
         prompt the user for new values to set for email, job type, job description, salary, and date
         set the new contactEmail, jobType, jobDescrp, salary, setDate
