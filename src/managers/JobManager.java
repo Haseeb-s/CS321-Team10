@@ -78,13 +78,14 @@ public class JobManager{
     public void printAvailableJobs() {
 
 
-        String output = "===============LIST OF AVAILABLE JOBS==============\n";
-
+        String output = "===============LIST OF AVAILABLE JOBS==============";
+        System.out.println(output);
         for (Job job : jobs) {
             if (job.currentStatus.equals("AVAILABLE")) {
                 System.out.println(String.format("Job ID: %s", job.getJobID()));
             }
         }
+        System.out.println("\n");
     }
 
 
