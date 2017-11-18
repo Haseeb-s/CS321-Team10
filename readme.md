@@ -16,6 +16,7 @@ Paul Brown
 You can run the program from the `src` directory with the following command.
 
 `javac *.java ./entities/*.java ./managers/*.java ./coordinators/*.java`
+
 `java FwClient ../test/job_sample-input.txt`
 
 
