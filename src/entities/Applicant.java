@@ -8,8 +8,7 @@ package entities;
 public class Applicant{
     private String name;
     private String phoneNum;
-    private String userName;
-    private String password;
+    private String email;
     private String address;
 
     /**
@@ -49,35 +48,19 @@ public class Applicant{
     public void setPhoneNum(String phoneNum){
     }
     /**
-     * Gets the username for the current applicant
+     * Gets the email for the current applicant
      * @return the username specific to the applicant
      */
-    public String getUsername(){
-        return userName;
+    public String getEmail(){
+        return email;
     }
 
     /**
-     * sets the username for the current applicant if signup
-     * @param userName is the user inputted userName
+     * sets the email for the current applicant if signup
+     * @param email is the user inputted userName
      */
-    public void setUsername(String userName){
-        this.userName = userName;
-    }
-
-    /**
-     * gets the password for the current applicant
-     * @return the password specific to the applicant
-     */
-    public String getPassword(){
-        return password;
-    }
-
-    /**
-     * sets the password when used in the sign up process
-     * @param password will be given from the user
-     */
-    public void setPassword(String password){
-        this.password = password;
+    public void setEmail(String email){
+        this.email = email;
     }
 
     /**
