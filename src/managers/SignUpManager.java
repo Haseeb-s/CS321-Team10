@@ -27,6 +27,22 @@ public class SignUpManager {
     }
 
     /**
+     * Adds a new applicant to the system
+     * @param name the applicant name
+     * @param email the applicant email address
+     * @param phone the applicant phone number
+     * @param address the applicant address
+     * @param creditCard the applicant credit cart
+     * @param expirationDate the expiration date
+     * @return returns an applicant instance
+     */
+    public Applicant addApplicant(String name, String email, String phone,
+                                  String address, String creditCard, String expirationDate) {
+
+
+    }
+
+    /**
      * Will check to see if there is an Applicant of the same email in the system.
      * @param email email that will be used to compare
      * @return a boolean that will indicate if found or not

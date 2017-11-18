@@ -2,9 +2,9 @@ package coordinators;
 
 import managers.ApplicationManager;
 import managers.JobManager;
-import manager.ReportManager;
-import manager.SignUpManager;
-import manager.Timer;
+import managers.ReportManager;
+import managers.SignUpManager;
+import managers.Timer;
 
 /**
  * This is the coordinator handling all interactions with the client.
@@ -22,6 +22,11 @@ public class JobSystemCoordinator {
      * @return a String will be returned indicating the instructions success or failure
      **/
     public static String callInstruction(int instructionID, String[] inst) {
+        ApplicationManager appManager = new ApplicationManager();
+        JobManager jobManager = new JobManager();
+        ReportManager reportManager = new ReportManager();
+        SignUpManager signUpManager = new SignUpManager();
+        Timer timer = new Timer();
 
 
         String message = "";
@@ -101,6 +106,7 @@ public class JobSystemCoordinator {
             String creditCard = inst[5];
             String expirationDate = inst[6];
 
+            signUpManager(name, email, phone, address, creditCard, expirationDate);
             // CREATE A SIGNUP MANAGER INSTANCE
             // - CREATE THE APPLICANT
             //  - IF CREATION SUCCESSFUL (APPLICANT DOES NOT EXIST)

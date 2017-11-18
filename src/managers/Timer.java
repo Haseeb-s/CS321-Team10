@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * Timer will keep track of current date and provide time signals to other manager classes.
  * @author
  */
-class Timer {
+public class Timer {
     LocalDate currentDate;
 
     /**

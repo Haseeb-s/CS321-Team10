@@ -15,7 +15,7 @@ public class ReportManager{
     private float avgNumApps, avgNumPostFilled, avgNumAppsAvailJobs;
 
 
-    private ReportManager(){
+    public ReportManager(){
     /*
      initalize numJobListingsStudents, numJobListingsFaculty, numJobListingsStaff
      set numberofJobCreated, currentNumberOfJobs, jobPostingsFilled, jobsNoLongerAvailable
