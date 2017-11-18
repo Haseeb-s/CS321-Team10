@@ -7,9 +7,11 @@ package entities;
 
 public class Applicant{
     private String name;
-    private String phoneNum;
+    private String phoneNumber;
     private String email;
     private String address;
+    private String creditCard;
+    private String expirationDate;
 
     /**
      * Will construct a default applicant that can be changed from the manager side
@@ -17,6 +19,27 @@ public class Applicant{
      */
     public Applicant(){
     }
+
+    /**
+     * Constructor to create a new applicant
+     * @param name the name of the applicant
+     * @param email the email address of the applicant
+     * @param phoneNumber the phone number of the applicant
+     * @param address the address of the applicant
+     * @param creditCard the credit card number of the applicant
+     * @param expirationDate the expiration date for the credit card
+     */
+    public Applicant(String name, String email, String phoneNumber,
+                     String address, String creditCard, String expirationDate) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.creditCard = creditCard;
+        this.expirationDate = expirationDate;
+
+    }
+
 
     /**
      * Will grab the name of the current applicant
@@ -31,21 +54,23 @@ public class Applicant{
      * @param name will get the name from user input
      */
     public void setName(String name){
+        this.name = name;
     }
 
     /**
      * Will grab the phone number of the current applicant
      * @return the phone number of the applicant
      */
-    public String getPhoneNum() {
-        return phoneNum;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     /**
      * Will set the phone number of the current applicant
      * @param phoneNum will get the phone number from the user
      */
-    public void setPhoneNum(String phoneNum){
+    public void setPhoneNumber(String phoneNumber){
+        this.phoneNumber = phoneNumber;
     }
     /**
      * Gets the email for the current applicant
