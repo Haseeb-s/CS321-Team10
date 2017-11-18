@@ -3,7 +3,7 @@
  *  The information stored will be provide applicantimport java.time.LocalDateTime;
  s with releveant information pertaining to the job.
  *
- * @author (INSERT NAME HERE) <-------------------------------------------- That means you Paul!
+ * @author Haseeb Shuaib
  *
  */
 package entities;
