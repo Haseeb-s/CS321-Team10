@@ -16,7 +16,7 @@ import entities.Applicant;
 
 public class JobSystemCoordinator {
     private static ApplicationManager appManager = new ApplicationManager();
-    private static JobManager jobManager = new JobManager();
+    public static JobManager jobManager = new JobManager();
     private static ReportManager reportManager = new ReportManager();
     private static SignUpManager signUpManager = new SignUpManager();
     public static Timer timer = new Timer();
