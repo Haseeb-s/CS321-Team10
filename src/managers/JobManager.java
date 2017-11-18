@@ -27,13 +27,16 @@ public class JobManager{
      * @param job will contain a job information and add it to the job arrayList
      * @return true if added correctly
      */
-    public boolean addJob(Job job) {
+    public boolean addJob(String jobID, String jobTitle, String jobType,
+                          String salary, String jobDescription, String expirationDate,
+                          String contactEmail) {
         //Will check if the amount is less than 100 jobs added
         //then Will add the job to the end of the arrayList
         //will return true if added else return false
+        currentJob = new Job(contactEmail, jobType, jobID, jobDescription, salary, jobTitle, expirationDate);
         if(jobs.size() <= 100)
         {
-            jobs.add(job);
+            jobs.add(currentJob);
             return true;
         }
         return false;
@@ -65,13 +68,13 @@ public class JobManager{
      * @return true if successfully edited
      */
     public boolean modifyJob(String jobID, String jobTitle, String jobType,
-                             double salary, String jobDescription, String expirationDate,
+                             String salary, String jobDescription, String expirationDate,
                              String contactEmail){
         //Will locate the job with the jobID
         //Then will move the user input for each input
         //to its respected fields
         //Will then return true if successful
-        Job newJob = new Job(String contactEmail, String jobType, String jobID, String jobDescription, Float salary);
+        Job newJob = new Job(contactEmail, jobType, jobID, jobDescription, salary);
         for(int i = 0; i< jobs.size(); i++){
             this.currentJob = jobs.get(i);
             if(this.currentJob.getJobID().compareTo(newJob.getJobID())==0){
@@ -102,5 +105,9 @@ public class JobManager{
             }
         }
         return false;
+    }
+
+    public ArrayList<Job> getJobs(){
+        return jobs;
     }
 }
