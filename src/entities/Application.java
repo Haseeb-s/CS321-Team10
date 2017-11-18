@@ -37,7 +37,7 @@ public class Application {
 
     /**
      * Returns the job instance of the application
-     * @return
+     * @return returns a job instance
      */
     public Job getJob() {
         return this.job;
@@ -45,7 +45,7 @@ public class Application {
 
     /**
      * Returns the applicant instance of the application
-     * @return
+     * @return returns an applicant instance
      */
     public Applicant getApplicant() {
         return this.applicant;
@@ -63,7 +63,7 @@ public class Application {
 
     /**
      * Sets the resume on the application instance
-     * @param resume
+     * @param resume returns the resume as a string
      */
     public void setResume(String resume) {
         this.resume = resume;
@@ -71,7 +71,7 @@ public class Application {
 
     /**
      * Returns the resume from the application instance
-     * @return
+     * @return returns the resume as a string
      */
     public String getResume() {
         return resume;
@@ -79,7 +79,7 @@ public class Application {
 
     /**
      * Sets the cover letter on the application instance
-     * @param coverLetter
+     * @param coverLetter the cover letter as a string
      */
     public void setCoverLetter(String coverLetter) {
         this.coverLetter = coverLetter;
@@ -87,7 +87,7 @@ public class Application {
 
     /**
      * Returns the cover letter from the application instance
-     * @return
+     * @return returns the cover letter as a string
      */
     public String getCoverLetter() {
         return coverLetter;
@@ -95,7 +95,7 @@ public class Application {
 
     /**
      * Sets the status on the application instance
-     * @param status
+     * @param status the status string to be set
      */
     public void setStatus(String status) {
         this.status = status;
@@ -103,7 +103,7 @@ public class Application {
 
     /**
      * Returns the status from the application instance
-     * @return
+     * @return returns the status string
      */
     public String getStatus() {
         return status;
@@ -111,7 +111,7 @@ public class Application {
 
     /**
      * Returns the application date from the instance
-     * @return
+     * @return returns the date the applicant applied
      */
     public LocalDate getDateApplied() {
         return dateApplied;
@@ -127,7 +127,7 @@ public class Application {
 
     /**
      * Generates a formated output for the application instance
-     * @return
+     * @return returns a formated string
      */
     public String toString() {
         return "Status: " + status + " Date Applied : " + dateApplied;

@@ -30,7 +30,7 @@ public class ApplicationManager {
     /**
      * Searches and returns a list of job applications from the system
      * @param email the email of the applicant
-     * @param jobID the job ID
+     * @param email the job ID
      * @return returns an ArrayList of Application instances
      */
     public ArrayList<Application> getApplicationsByUser(String email) {
@@ -53,7 +53,7 @@ public class ApplicationManager {
 
     /**
      * Searches and returns a list of pending job applications for a particula job from the system
-     * @param jobID
+     * @param jobID the ID in the system
      * @return returns an ArrayList of Application instances
      */
     public ArrayList<Application> getPendingApplications(String jobID) {
