@@ -274,7 +274,8 @@ public class JobSystemCoordinator {
             // - IF JOB IS IN SYSTEM
             //  - MODIFY
             // - ELSE PRINT ERROR
-
+            jobManager.modifyJob(jobID,jobTitle,jobType,salary,
+                    jobDescription,expirationDate,contactEmail);
             return "@9 MODIFYING JOB";
         }
 

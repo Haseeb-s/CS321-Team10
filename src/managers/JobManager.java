@@ -106,6 +106,16 @@ public class JobManager{
             this.currentJob = jobs.get(i);
             if(this.currentJob.getJobID().compareTo(newJob.getJobID())==0){
                 jobs.set(i,newJob);
+                String success = String.format("=========JOB POSTING MODIFICATION SUCCESS=========\n"+
+                        "A new job has been posted with following details:\n"+
+                        "Job ID: %s\n"+
+                        "Job Name: %s\n"+
+                        "Job Type: %s\n"+
+                        "Salary: %s\n"+
+                        "Job Description: %s\n"+
+                        "Expiration Date: %s\n"+
+                        "Contact email: %s\n", jobID,jobTitle,jobType,salary,jobDescription,expirationDate,contactEmail);
+                System.out.println(success);
                 return true;
             }
         }
