@@ -13,9 +13,8 @@ import java.time.LocalDate;
 import coordinators.JobSystemCoordinator;
 
 public class Job {
-    private String jobName, contactEmail, jobType, jobID, jobDescrip;
+    private String jobName, contactEmail, jobType, jobID, jobDescrip, salary;
     public String currentStatus;
-    private double salary;
     private LocalDate expDate;
     private int numberofApplicants;
 
@@ -34,7 +33,7 @@ public class Job {
         jobType = "";
         jobID = "";
         jobDescrip = "";
-        salary = -1.0;
+        salary = "$-1";
         expDate = JobSystemCoordinator.timer.getCurrentDate().plusYears(1);
     }
 
@@ -45,14 +44,16 @@ public class Job {
      * @param jobID the unique ID for this job
      * @param jobDescrip the unique description for this job
      * @param salary the salary set for the class
+     * @param expDate the set expDate
      */
-    public Job(String contactEmail, String jobType, String jobID, String jobDescrip, Float salary){
+    public Job(String contactEmail, String jobType, String jobID, String jobDescrip, String salary, String jobName, String expDate){
+        this.jobName = jobName;
         this.contactEmail = contactEmail;
         this.jobType = jobType;
         this.jobID = jobID;
         this.jobDescrip = jobDescrip;
         this.salary = salary;
-        expDate = JobSystemCoordinator.timer.getCurrentDate().plusYears(1);
+        this.expDate = LocalDate.parse(expDate);
     }
 
     /**
@@ -112,20 +113,20 @@ public class Job {
     /**
      * Set method used to edit/modify the job after having already been created. Useful to make adjustments or include
      * forgotten information.
-     *
+     * @param jobName      set the new job name
      * @param contactEmail updated email used to contact job poster
      * @param jobType      update the type of job listing
      * @param jobDescrip   new job description that will overwrite previous
      * @param salary       set new salary
      * @param setDate      set new expiration date for the job
      */
-    public void modJob(String jobName, String contactEmail, String jobType, String jobDescrip, double salary, LocalDate setDate) {
+    public void modJob(String jobName, String contactEmail, String jobType, String jobDescrip, String salary, String setDate) {
         this.jobName = jobName;
         this.contactEmail = contactEmail;
         this.jobType = jobType;
         this.jobDescrip = jobDescrip;
         this.salary = salary;
-        expDate = setDate.plusYears(1);
+        this.expDate = LocalDate.parse(setDate);
     }
 
     /**
