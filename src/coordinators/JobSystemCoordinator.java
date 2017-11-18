@@ -1,5 +1,11 @@
 package coordinators;
 
+import managers.ApplicationManager;
+import managers.JobManager;
+import manager.ReportManager;
+import manager.SignUpManager;
+import manager.Timer;
+
 /**
  * This is the coordinator handling all interactions with the client.
  *
