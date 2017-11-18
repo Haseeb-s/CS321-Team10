@@ -234,7 +234,8 @@ public class JobSystemCoordinator {
             // - IF JOB IS NOT YET IN THE SYSTEM
             //  - ADD JOB
             // - ELSE PRINT ERROR
-
+            jobManager.addJob(jobID, jobTitle, jobType, salary,
+                    jobDescription, expirationDate, contactEmail);
             return "@7 POSTING JOB";
         }
 

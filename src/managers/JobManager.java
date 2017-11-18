@@ -27,7 +27,7 @@ public class JobManager{
      * @param job will contain a job information and add it to the job arrayList
      * @return true if added correctly
      */
-    public boolean addJob(String jobID, String jobTitle, String jobType,
+    public void addJob(String jobID, String jobTitle, String jobType,
                           String salary, String jobDescription, String expirationDate,
                           String contactEmail) {
         //Will check if the amount is less than 100 jobs added
@@ -37,9 +37,22 @@ public class JobManager{
         if(jobs.size() <= 100)
         {
             jobs.add(currentJob);
-            return true;
+            String success = String.format("================JOB POSTING SUCCESS================\n" +
+                            "A new job has been posted with following details:\n" +
+                            "Job ID: %s\n" +
+                            "Job Name: %s\n" +
+                            "Job Type: %s\n" +
+                            "Salary: %s\n" +
+                            "Job Description: %s\n" +
+                            "Expiration Date: %s\n" +
+                            "Contact email: %s", jobID, jobTitle, jobType, salary, jobDescription, expirationDate);
+
+            System.out.println(success);
+        } else {
+            String success = String.format("================JOB POSTING FAILURE ================\n" +
+                    "THERE ARE MORE THAN 100 JOBS IN THE SYSTEM:\n");
+            System.out.println(success);
         }
-        return false;
     }
 
     /**
@@ -74,7 +87,7 @@ public class JobManager{
         //Then will move the user input for each input
         //to its respected fields
         //Will then return true if successful
-        Job newJob = new Job(contactEmail, jobType, jobID, jobDescription, salary);
+        Job newJob = new Job(contactEmail, jobType, jobID, jobDescription, salary, jobTitle, expirationDate);
         for(int i = 0; i< jobs.size(); i++){
             this.currentJob = jobs.get(i);
             if(this.currentJob.getJobID().compareTo(newJob.getJobID())==0){
@@ -88,22 +101,27 @@ public class JobManager{
     /**
      * Will check the expiration for the whole job arrayLIst
      * then Remove all the jobs passed that time
-     * @param time will get the expiration signal from the Timer class
      * @return if found and removed
      */
-    public boolean checkExp(){
+    public boolean checkExpiration(){
         //Will grab the time from the timer and compare it to the job expiration
         //Then will grab each jobID that is expired
         //Will then add it to a String array
         //then remove all those jobs in the String array
         //return true if found
-        String[] expiredJobs = new String[];
+
+        ArrayList<String> expiredJobs = new ArrayList<>();
         for(int i=0; i < jobs.size(); i++){
             currentJob = jobs.get(i);
             if(currentJob.getExpData().compareTo(JobSystemCoordinator.timer.getCurrentDate())==0){
-
+                expiredJobs.add(currentJob.getJobID());
             }
         }
+        for(int i = 0; i <expiredJobs.size(); i++){
+            removeJob(expiredJobs.get(i));
+        }
+        if(expiredJobs.size()!=0)
+            return true;
         return false;
     }
 
