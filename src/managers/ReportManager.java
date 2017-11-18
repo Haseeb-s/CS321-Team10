@@ -24,40 +24,11 @@ public class ReportManager{
     }
 
     /**
-     * Gathers the number of job listings created for students and stores these values in the appropriate fields
-     * to be used for calculations later.
-     * @return The number of job listings available for students
-     */
-    private int getStudentListings(){
-        /*
-        return JobSystemCoordinator.getStudentListings
-         */
-        return 0;
-    }
-    /**
-     * Gathers the number of job listings created for students and stores these values in the appropriate fields
-     * to be used for calculations later.
-     * @return The number of job listings available for Staff
-     */
-    private int getStaffListings(){
-        /*
-        return JobSystemCoordinator.getStaffListings
-         */
-        return 0;}
-    /**
-     * Gathers the number of job listings created for students and stores these values in the appropriate fields
-     * to be used for calculations later.
-     * @return The number of job listings available for Faculty
-     */
-    private int getFacultyListings(){
-        /*
-        return JobSystemCoordinator.getStaffListings
-         */
-        return 0;}
-
-    /**
      * Populates the fields relevant to the job report. Creates calculations based on the information gather by querying
      * other classes.
+     *
+     * It would be easiest and most efficent to populate all the data fields using the arrayList containing the jobs
+     *
      */
     private void calculateAverages(){
 
@@ -66,6 +37,8 @@ public class ReportManager{
           set avgNumPostFilled to total number of applications for post filled jobs / number of applicants for post filled jobs
           set avgNumAppsAvailJobs to total number of applicants for avail jobs / number of available jobs
         */
+
+
     }
 
     /**

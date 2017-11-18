@@ -16,9 +16,7 @@ public class Job {
     private float salary;
     private LocalDateTime expDate;
 
-    private enum status {AVAILABLE, FILLED, WITHDRAWN, EXPIRED}
-
-    ;
+    private enum status {AVAILABLE, FILLED, WITHDRAWN, EXPIRED};
     private int numberofApplicants;
 
     /**
