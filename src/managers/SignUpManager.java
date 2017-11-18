@@ -39,7 +39,6 @@ public class SignUpManager {
     public Applicant addApplicant(String name, String email, String phone,
                                   String address, String creditCard, String expirationDate) {
 
-
     }
 
     /**
