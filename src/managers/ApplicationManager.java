@@ -1,5 +1,6 @@
 package managers;
 
+import managers.Timer;
 import entities.Application;
 import entities.Job;
 import java.time.LocalDate;
@@ -24,6 +25,8 @@ public class ApplicationManager {
         // TRY TO FIND AN APPLICATION CONTAINING THE EMAIL AND JOB ID
         // IF FOUND RETURN THE APPLICATION
         // OTHERWISE RETURN NULL
+        Application application = new Application();
+        return application;
     }
 
 
@@ -38,6 +41,10 @@ public class ApplicationManager {
         // CHECK IF APPLICATION CONTAININS THE EMAIL
         // IF FOUND ADD APPLICATION TO ARRAY LIST
         // RETURN ARRAY LIST
+
+
+        ArrayList<Application> appList = new ArrayList<Application>();
+        return appList;
     }
 
     /**
@@ -49,6 +56,9 @@ public class ApplicationManager {
         // CHECK IF APPLICATION IS PENDING
         // IF FOUND ADD APPLICATION TO ARRAY LIST
         // RETURN ARRAY LIST
+
+        ArrayList<Application> appList = new ArrayList<Application>();
+        return appList;
     }
 
     /**
@@ -61,6 +71,9 @@ public class ApplicationManager {
         // CHECK IF APPLICATION IS PENDING AND IF IT BELONGS TO JOBID
         // IF FOUND ADD APPLICATION TO ARRAY LIST
         // RETURN ARRAY LIST
+
+        ArrayList<Application> appList = new ArrayList<Application>();
+        return appList;
     }
 
     /**

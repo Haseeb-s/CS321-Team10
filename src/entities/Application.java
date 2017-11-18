@@ -17,8 +17,8 @@ public class Application {
     private String resume;
     private String coverLetter;
     private String status;
-    private Date dateApplied;
-    private Date dateWithdrawn;
+    private LocalDate dateApplied;
+    private LocalDate dateWithdrawn;
     private Job job;
     private Applicant applicant;
     private ArrayList<LocalDateTime> interviews;
@@ -29,10 +29,17 @@ public class Application {
      * @param applicant the applicant instance
      * @param currentDate the current date from the timer class
      */
-    public Application(Job job, Applicant applicant, Date currentDate) {
+    public Application(Job job, Applicant applicant, LocalDate currentDate) {
         this.dateApplied = currentDate;
         this.job = job;
         this.applicant = applicant;
+    }
+
+    /**
+     * Default constructor
+     */
+    public Application() {
+
     }
 
     /**
@@ -122,7 +129,7 @@ public class Application {
      * @param currentDate expects the current date in the system
      */
     public void withdrawApplication(LocalDate currentDate) {
-        dateWithdrawn = LocalDateTime.now();
+        dateWithdrawn = currentDate;
     }
 
     /**
