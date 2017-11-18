@@ -9,18 +9,19 @@ package managers;
  * @author Haseeb Shuaib
  *
  */
+import coordinators.JobSystemCoordinator;
+import entities.Job;
+import managers.JobManager;
+import java.util.ArrayList;
+
 public class ReportManager{
-    private int numberofJobCreated, currentNumberOfJobs, jobPostingsFilled, jobsNoLongerAvailable,
-        numJobListingsStudents, numJobListingsStaff, numJobListingsFaculty;
-    private float avgNumApps, avgNumPostFilled, avgNumAppsAvailJobs;
+    private int numberofJobCreated = 0, currentNumberOfJobs = 0, jobPostingsFilled = 0, jobsNoLongerAvailable = 0,
+        numJobListingsStudents = 0, numJobListingsStaff = 0, numJobListingsFaculty = 0;
+    private double avgNumApps = 0, avgNumPostFilled = 0, avgNumAppsNotAvailJobs = 0;
 
 
     public ReportManager(){
-    /*
-     initalize numJobListingsStudents, numJobListingsFaculty, numJobListingsStaff
-     set numberofJobCreated, currentNumberOfJobs, jobPostingsFilled, jobsNoLongerAvailable
-
-     */
+     calculateAverages();
     }
 
     /**
@@ -37,8 +38,36 @@ public class ReportManager{
           set avgNumPostFilled to total number of applications for post filled jobs / number of applicants for post filled jobs
           set avgNumAppsAvailJobs to total number of applicants for avail jobs / number of available jobs
         */
+        ArrayList<Job> newJob = JobSystemCoordinator.jobManager.jobs;
+        int filledApplicants = 0, notAvailApplicants = 0, numberOfApplicants = 0;
+        for(Job temp: newJob){
+
+            numberofJobCreated++;
+            numberOfApplicants += temp.getNumApplicants();
+            if(temp.currentStatus.equals("FILLED")) {
+                jobPostingsFilled++;
+                jobsNoLongerAvailable++;
+                filledApplicants += temp.getNumApplicants();
+                notAvailApplicants += temp.getNumApplicants();
+            }
+            if(temp.currentStatus.equals("EXPIRED")) {
+                jobsNoLongerAvailable++;
+                notAvailApplicants += temp.getNumApplicants();
+            }
+            if(temp.currentStatus.equals("AVAILABLE"))
+                currentNumberOfJobs++;
+            if(temp.jobType.equals("STUDENTS"))
+                numJobListingsStudents++;
+            if(temp.jobType.equals("STAFF"))
+                numJobListingsStaff++;
+            if(temp.jobType.equals("FACULTY"))
+                numJobListingsFaculty++;
 
 
+        }
+        avgNumApps = numberOfApplicants / numberofJobCreated;
+        avgNumPostFilled = filledApplicants / jobPostingsFilled;
+        avgNumAppsNotAvailJobs = notAvailApplicants / jobsNoLongerAvailable;
     }
 
     /**
@@ -48,6 +77,19 @@ public class ReportManager{
      */
     public String toString(){
         // build string displaying data in global variables in a readable format
-        return "";}
+        return "=================MONTHLY STATISTICS================\n" +
+                "Month : " + JobSystemCoordinator.timer.getCurrentDate().getMonth() + "\n" +
+                "Query type\t\t\t\t\t\t\t\t\tCount\n" +
+                "---------------------------------------------------\n" +
+                "Total job created: \t\t\t\t\t\t\t"+ numberofJobCreated +"\n" +
+                "Post filled status:\t\t\t\t\t\t\t" + jobPostingsFilled + "\n" +
+                "No longer available:\t\t\t\t\t\t" + jobsNoLongerAvailable + "\n" +
+                "Avg. applicants(all jobs):\t\t\t\t\t" + avgNumApps + "\n" +
+                "Avg. applicants(post filled):\t\t\t\t" + avgNumPostFilled + "\n" +
+                "Avg. applicants(no longer available):\t\t" + avgNumAppsNotAvailJobs + "\n" +
+                "Job listing (faculty):\t\t\t\t\t\t" +numJobListingsFaculty+ "\n" +
+                "Job listing (student):\t\t\t\t\t\t" +numJobListingsStudents+ "\n" +
+                "Job listing (staff):\t\t\t\t\t\t" +numJobListingsStaff+ "\n";
+    }
 
 }
