@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import coordinators.JobSystemCoordinator;
 
 public class Job {
-    private String jobName, contactEmail, jobType, jobID, jobDescrip, salary;
+    public String jobName, contactEmail, jobType, jobID, jobDescrip, salary;
     public String currentStatus;
     private LocalDate expDate;
     private int numberofApplicants;
@@ -29,7 +29,7 @@ public class Job {
         set status
          */
         contactEmail = "";
-        currentStatus = "Available";
+        currentStatus = "AVAILABLE";
         jobType = "";
         jobID = "";
         jobDescrip = "";
