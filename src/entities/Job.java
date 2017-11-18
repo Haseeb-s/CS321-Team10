@@ -1,7 +1,7 @@
 /**
  *  The job entity is used to create job objects which stores the information relevant to each job instance.
  *  The information stored will be provide applicantimport java.time.LocalDateTime;
- s with releveant information pertaining to the job.
+ * with releveant information pertaining to the job.
  *
  * @author Haseeb Shuaib
  *
@@ -13,11 +13,10 @@ import java.time.LocalDate;
 import coordinators.JobSystemCoordinator;
 
 public class Job {
-    private String jobName, contactEmail, currentStatus, jobType, jobID, jobDescrip;
+    private String jobName, contactEmail, jobType, jobID, jobDescrip;
+    public String currentStatus;
     private double salary;
     private LocalDate expDate;
-
-    private enum status {AVAILABLE, FILLED, WITHDRAWN, EXPIRED};
     private int numberofApplicants;
 
     /**
@@ -31,7 +30,7 @@ public class Job {
         set status
          */
         contactEmail = "";
-        currentStatus = status.AVAILABLE.toString();
+        currentStatus = "Available";
         jobType = "";
         jobID = "";
         jobDescrip = "";
