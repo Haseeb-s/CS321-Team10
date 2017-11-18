@@ -1,6 +1,6 @@
 package managers;
 
-import java.date.LocalDate;
+import java.time.LocalDate;
 
 /**
  * Timer will keep track of current date and provide time signals to other manager classes.
@@ -21,6 +21,7 @@ class Timer {
      */
     public LocalDate getCurrentDate() {
         // return currentDate
+        return LocalDate.now(); // PLACEHOLDER RETURN
     }
 
     /**

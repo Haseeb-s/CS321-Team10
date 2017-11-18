@@ -1,5 +1,6 @@
 package managers;
 
+import managers.Timer;
 import entities.Application;
 import entities.Job;
 import java.time.LocalDate;
@@ -24,13 +25,15 @@ public class ApplicationManager {
         // TRY TO FIND AN APPLICATION CONTAINING THE EMAIL AND JOB ID
         // IF FOUND RETURN THE APPLICATION
         // OTHERWISE RETURN NULL
+        Application application = new Application();
+        return application;
     }
 
 
     /**
      * Searches and returns a list of job applications from the system
      * @param email the email of the applicant
-     * @param jobID the job ID
+     * @param email the job ID
      * @return returns an ArrayList of Application instances
      */
     public ArrayList<Application> getApplicationsByUser(String email) {
@@ -38,6 +41,10 @@ public class ApplicationManager {
         // CHECK IF APPLICATION CONTAININS THE EMAIL
         // IF FOUND ADD APPLICATION TO ARRAY LIST
         // RETURN ARRAY LIST
+
+
+        ArrayList<Application> appList = new ArrayList<Application>();
+        return appList;
     }
 
     /**
@@ -49,11 +56,14 @@ public class ApplicationManager {
         // CHECK IF APPLICATION IS PENDING
         // IF FOUND ADD APPLICATION TO ARRAY LIST
         // RETURN ARRAY LIST
+
+        ArrayList<Application> appList = new ArrayList<Application>();
+        return appList;
     }
 
     /**
      * Searches and returns a list of pending job applications for a particula job from the system
-     * @param jobID
+     * @param jobID the ID in the system
      * @return returns an ArrayList of Application instances
      */
     public ArrayList<Application> getPendingApplications(String jobID) {
@@ -61,6 +71,9 @@ public class ApplicationManager {
         // CHECK IF APPLICATION IS PENDING AND IF IT BELONGS TO JOBID
         // IF FOUND ADD APPLICATION TO ARRAY LIST
         // RETURN ARRAY LIST
+
+        ArrayList<Application> appList = new ArrayList<Application>();
+        return appList;
     }
 
     /**
