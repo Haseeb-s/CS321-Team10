@@ -140,6 +140,7 @@ public class JobSystemCoordinator {
             // FROM THE HOB MANAGER SHOW GET THE JOB LIST
             // FILTER BY AVAILABLE JOBS
             // DISPLAY
+            jobManager.printAvailableJobs();
             return "@2 100 AVAILABLE JOBS";
         }
 

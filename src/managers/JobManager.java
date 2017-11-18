@@ -45,7 +45,7 @@ public class JobManager{
                             "Salary: %s\n" +
                             "Job Description: %s\n" +
                             "Expiration Date: %s\n" +
-                            "Contact email: %s", jobID, jobTitle, jobType, salary, jobDescription, expirationDate);
+                            "Contact email: %s\n", jobID, jobTitle, jobType, salary, jobDescription, expirationDate, contactEmail);
 
             System.out.println(success);
         } else {
@@ -73,6 +73,20 @@ public class JobManager{
         }
         return "";
     }
+
+
+    public void printAvailableJobs() {
+
+
+        String output = "===============LIST OF AVAILABLE JOBS==============\n";
+
+        for (Job job : jobs) {
+            if (job.currentStatus.equals("AVAILABLE")) {
+                System.out.println(String.format("Job ID: %s", job.getJobID()));
+            }
+        }
+    }
+
 
     /**
      * Will search for the job then will add the modified job
