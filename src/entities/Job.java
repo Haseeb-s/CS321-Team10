@@ -10,10 +10,11 @@ package entities;
 
 
 import java.time.LocalDateTime;
+import managers.
 
 public class Job {
-    private String contactEmail, status, jobType, jobID, jobDescrip;
-    private float salary;
+    private String contactEmail, currentStatus, jobType, jobID, jobDescrip;
+    private double salary;
     private LocalDateTime expDate;
 
     private enum status {AVAILABLE, FILLED, WITHDRAWN, EXPIRED};
@@ -29,6 +30,13 @@ public class Job {
         set current time + 1 year as expDate
         set status
          */
+        contactEmail = "";
+        currentStatus = status.AVAILABLE.toString();
+        jobType = "";
+        jobID = "";
+        jobDescrip = "";
+        salary = -1.0;
+        expDate = ;
     }
 
     /**
@@ -120,8 +128,6 @@ public class Job {
         set the new contactEmail, jobType, jobDescrp, salary, setDate
          */
     }
-
-    ;
 
     /**
      * returns a readable string with the job listing information
