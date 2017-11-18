@@ -2,6 +2,7 @@ package managers;
 
 import java.util.ArrayList;
 import entities.Job;
+import coordinators.JobSystemCoordinator;
 import java.time.LocalDateTime;
 
 /**
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
  */
 public class JobManager{
     ArrayList<Job> jobs = new ArrayList<Job>();
-    Job job;
+    Job currentJob;
     Timer time;
 
     /**
@@ -30,6 +31,11 @@ public class JobManager{
         //Will check if the amount is less than 100 jobs added
         //then Will add the job to the end of the arrayList
         //will return true if added else return false
+        if(jobs.size() <= 100)
+        {
+            jobs.add(job);
+            return true;
+        }
         return false;
     }
 
@@ -42,6 +48,13 @@ public class JobManager{
         //Will look for the job ID in the jobs arrayList
         //then will remove that job from the arrayList
         //Will return the String jobID that has been removed
+        for(int i = 0; i < jobs.size(); i++){
+            this.currentJob = jobs.get(i);
+            if(jobID.compareTo(currentJob.getJobID()) == 0){
+                jobs.remove(i);
+                return this.currentJob.getJobID();
+            }
+        }
         return "";
     }
 
@@ -51,11 +64,21 @@ public class JobManager{
      * @param job Will contain all the new job information
      * @return true if successfully edited
      */
-    public boolean modifyJob(Job job){
+    public boolean modifyJob(String jobID, String jobTitle, String jobType,
+                             double salary, String jobDescription, String expirationDate,
+                             String contactEmail){
         //Will locate the job with the jobID
         //Then will move the user input for each input
         //to its respected fields
         //Will then return true if successful
+        Job newJob = new Job(String contactEmail, String jobType, String jobID, String jobDescription, Float salary);
+        for(int i = 0; i< jobs.size(); i++){
+            this.currentJob = jobs.get(i);
+            if(this.currentJob.getJobID().compareTo(newJob.getJobID())==0){
+                jobs.set(i,newJob);
+                return true;
+            }
+        }
         return false;
     }
 
@@ -65,12 +88,16 @@ public class JobManager{
      * @param time will get the expiration signal from the Timer class
      * @return if found and removed
      */
-    public boolean checkExp(Timer time){
+    public boolean checkExp(){
         //Will grab the time from the timer and compare it to the job expiration
         //Then will grab each jobID that is expired
         //Will then add it to a String array
         //then remove all those jobs in the String array
         //return true if found
+        for(int i=0; i < jobs.size(); i++){
+            currentJob = jobs.get(i);
+            if(currentJob.getExpData().compareTo(JobSystemCoordinator.timer.getCurrentDate());
+        }
         return false;
     }
 }
