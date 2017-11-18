@@ -27,13 +27,17 @@ public class JobManager{
      * @param job will contain a job information and add it to the job arrayList
      * @return true if added correctly
      */
-    public boolean addJob(Job job) {
+    public boolean addJob(String jobID, String jobTitle, String jobType,
+                          double salary, String jobDescription, String expirationDate,
+                          String contactEmail) {
         //Will check if the amount is less than 100 jobs added
         //then Will add the job to the end of the arrayList
         //will return true if added else return false
+        currentJob = new Job(String contactEmail, String jobType, String jobID,
+                String jobDescription, Float salary){
         if(jobs.size() <= 100)
         {
-            jobs.add(job);
+            jobs.add(currentJob);
             return true;
         }
         return false;
@@ -102,5 +106,9 @@ public class JobManager{
             }
         }
         return false;
+    }
+
+    public ArrayList<Job> getJobs(){
+        return jobs;
     }
 }
