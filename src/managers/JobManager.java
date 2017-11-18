@@ -88,22 +88,26 @@ public class JobManager{
     /**
      * Will check the expiration for the whole job arrayLIst
      * then Remove all the jobs passed that time
-     * @param time will get the expiration signal from the Timer class
      * @return if found and removed
      */
-    public boolean checkExp(){
+    public boolean checkExpiration(){
         //Will grab the time from the timer and compare it to the job expiration
         //Then will grab each jobID that is expired
         //Will then add it to a String array
         //then remove all those jobs in the String array
         //return true if found
-        String[] expiredJobs = new String[];
+        ArrayList<String> expiredJobs = new ArrayList<>();
         for(int i=0; i < jobs.size(); i++){
             currentJob = jobs.get(i);
             if(currentJob.getExpData().compareTo(JobSystemCoordinator.timer.getCurrentDate())==0){
-
+                expiredJobs.add(currentJob.getJobID());
             }
         }
+        for(int i = 0; i <expiredJobs.size(); i++){
+            removeJob(expiredJobs.get(i));
+        }
+        if(expiredJobs.size()!=0)
+            return true;
         return false;
     }
 
