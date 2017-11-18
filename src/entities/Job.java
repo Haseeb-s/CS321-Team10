@@ -54,6 +54,7 @@ public class Job {
         this.jobID = jobID;
         this.jobDescrip = jobDescrip;
         this.salary = salary;
+        this.currentStatus = "AVAILABLE";
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
         this.expDate = LocalDate.parse(expDate, formatter);
