@@ -3,6 +3,11 @@ package entities;
 import entities.Job;
 import entities.Applicant;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  * Entitiy storing the information relating to a single job application.
  * @author Mathias Wiesbauer
@@ -24,7 +29,7 @@ public class Application {
      * @param applicant the applicant instance
      * @param currentDate the current date from the timer class
      */
-    public Application(Job job, Applicant applicant, LocalDate currentDate) {
+    public Application(Job job, Applicant applicant, Date currentDate) {
         this.dateApplied = currentDate;
         this.job = job;
         this.applicant = applicant;

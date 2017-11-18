@@ -2,6 +2,7 @@ package managers;
 
 import entities.Application;
 import entities.Job;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
