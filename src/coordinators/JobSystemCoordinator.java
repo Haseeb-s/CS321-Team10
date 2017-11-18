@@ -110,18 +110,17 @@ public class JobSystemCoordinator {
             String creditCard = inst[5];
             String expirationDate = inst[6];
 
-            String error = "==================SIGN UP FAILURE==================\n" +
-                    "User exists with given email address!";
-
-
-
-            // CREATE A SIGNUP MANAGER INSTANCE
             // - CREATE THE APPLICANT
-            try {
-                Applicant newApplicant = signUpManager.addApplicant(name, email, phone, address, creditCard, expirationDate);
-            } catch (Exception e){
-                System.out.println(error);
-            }
+            signUpManager.addApplicant(name, email, phone, address, creditCard, expirationDate);
+
+            //System.out.println(newApplicant.getEmail());
+            //if (newApplicant.getEmail() == email) {
+            //    System.out.println(error);
+            //} else {
+            //    System.out.println("Test...");
+            //}
+
+
 
 
 
@@ -138,7 +137,6 @@ public class JobSystemCoordinator {
         * @return success or failure message to be printed.
         */
         public static String viewAvailableJobs() {
-
             // FROM THE HOB MANAGER SHOW GET THE JOB LIST
             // FILTER BY AVAILABLE JOBS
             // DISPLAY
