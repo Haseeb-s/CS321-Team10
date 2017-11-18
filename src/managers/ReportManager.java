@@ -65,9 +65,19 @@ public class ReportManager{
 
 
         }
-        avgNumApps = numberOfApplicants / numberofJobCreated;
-        avgNumPostFilled = filledApplicants / jobPostingsFilled;
-        avgNumAppsNotAvailJobs = notAvailApplicants / jobsNoLongerAvailable;
+
+        if (currentNumberOfJobs != 0) {
+            avgNumApps = numberOfApplicants / numberofJobCreated;
+        }
+
+        if (jobPostingsFilled != 0) {
+            avgNumPostFilled = filledApplicants / jobPostingsFilled;
+        }
+
+        if (jobsNoLongerAvailable != 0) {
+            avgNumAppsNotAvailJobs = notAvailApplicants / jobsNoLongerAvailable;
+        }
+
     }
 
     /**
