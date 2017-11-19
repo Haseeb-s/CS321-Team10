@@ -29,8 +29,17 @@ public class ApplicationManager {
         // TRY TO FIND AN APPLICATION CONTAINING THE EMAIL AND JOB ID
         // IF FOUND RETURN THE APPLICATION
         // OTHERWISE RETURN NULL
-        Application application = new Application();
-        return application;
+
+        Application applicationNotFound = null;
+        // CHECK IF APPLICATION ALREADY EXISTS IN THE SYSTEM IF IT EXISTS RETURN IT
+        for (Application application : applications) {
+            if (application.getApplicant().getEmail().equals(email) && application.getJob().getJobID().equals(jobID)) {
+                return application;
+            } // END IF
+        } // END FOR
+
+        // RETURN NULL
+        return applicationNotFound;
     }
 
 
@@ -107,16 +116,12 @@ public class ApplicationManager {
         String failure = String.format("==============JOB APPLICATION FAILED==============\n" +
                 "Applicant email: %s Job ID: %s\n", email, jobID);
 
-
-        // CHECK IF APPLICATION ALREADY EXISTS IN THE SYSTEM IF IT EXISTS PRINT ERROR AND RETURN
-        for (Application application : applications) {
-            if (application.getApplicant().getEmail().equals(email) && application.getJob().getJobID().equals(jobID)) {
-                System.out.println(failure);
-                return;
-            } // END IF
-        } // END FOR
-
-
+        // CHECK IF THE APPLICATION ALREADY EXISTS IN THE SYSTEM
+        Application application = getApplication(email, jobID);
+        if (application != null ) {     // APPLICATION EXISTS ALREADY
+            System.out.println(failure);
+            return;
+        }
 
         // CHECK IF THE JOB ID IS IN THE SYSTEM
         Job jobToApplyFor = null;
@@ -149,6 +154,30 @@ public class ApplicationManager {
         } else {
             System.out.println(failure);
         } // END IF ELSE
+    }
+
+    public void printApplication(String email, String jobID) {
+        Application foundApplication = getApplication(email, jobID);
+
+        if (foundApplication != null) {
+
+
+            String success = String.format("==============JOB APPLICATION DETAILS==============\n" +
+                            "Applicant email: %s\n" +
+                            "Job ID: %s\n" +
+                            "Submitted Cover Letter: %s\n" +
+                            "Submitted Resume: %s\n", email, jobID,
+                    foundApplication.getCoverLetter(), foundApplication.getResume());
+
+            System.out.println(success);
+
+        } else {
+            String failure = String.format("==========JOB APPLICATION DETAILS FAILURE==========\n" +
+                            "Applicant email: %s\n" +
+                            "Job ID: %s\n", email, jobID);
+
+        }
+
     }
 
     /**

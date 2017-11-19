@@ -29,70 +29,65 @@ public class JobSystemCoordinator {
      * @param inst the array of parameters passed
      * @return a String will be returned indicating the instructions success or failure
      **/
-    public static String callInstruction(int instructionID, String[] inst) {
+    public static void callInstruction(int instructionID, String[] inst) {
 
-
-
-        String message = "";
         switch(instructionID) {
             case 1:     // SIGNING UP
-                message = signUp(inst);
+                signUp(inst);
                 break;
             case 2:     // VIEW AVAILABLE JOBS
-                message = viewAvailableJobs();
+                viewAvailableJobs();
                 break;
             case 3:     // SUBMIT JOB APPLICATION
-                message = submitJobApplication(inst);
+                submitJobApplication(inst);
                 // DO...
                 break;
             case 4:     // REVIEW JOB APPLICATION
-                message = reviewJobApplication(inst);
+                reviewJobApplication(inst);
                 break;
             case 5:     // DASHBOARD
-                message = viewDashboard(inst);
+                viewDashboard(inst);
                 break;
             case 6:     // WITHDRAW AN APPLICATION
-                message = withdrawApplication(inst);
+                withdrawApplication(inst);
                 break;
             case 7:     // POST A JOB
-                message = postJob(inst);
+                postJob(inst);
                 break;
             case 8:     // REMOVE A JOB
-                message = removeJob(inst);
+                removeJob(inst);
                 break;
             case 9:     // MODIFY A JOB
-                message = modifyJob(inst);
+                modifyJob(inst);
                 break;
             case 10:     // VIEW PENDING JOB APPLICATIONS
-                message = viewPendingJobApplications();
+                viewPendingJobApplications();
                 break;
             case 11:     // SETUP INTERVIEWS
-                message = setupInterviews(inst);
+                setupInterviews(inst);
                 break;
             case 12:     // MONTHLY REPORT
-                message = monthlyReport(inst);
+                monthlyReport(inst);
                 break;
             case 13:     // EXPIRATION SIGNAL
-                message = expirationSignal(inst);
+                expirationSignal(inst);
                 break;
             case 14:     // MONTH END SIGNAL
-                message = monthEndSignal();
+                monthEndSignal();
                 break;
             case 15:     // YEAR END SIGNAL
-                message = yearEndSignal();
+                yearEndSignal();
                 break;
             case 16:     // CLOSE A JOB WITH HIRING
-                message = closeJobWithHiring(inst);
+                closeJobWithHiring(inst);
                 break;
             case 17:     // VIEW PENDING JOB APPLICATIONS
-                message = viewPendingJobApplications(inst);
+                viewPendingJobApplications(inst);
                 break;
             case 18:     // VIEW A SPECIFIC JOB
-                message = viewJob(inst);
+                viewJob(inst);
                 break;
             } // END SWITCH
-
-        return message;
         } // END callInstruction
 
 
@@ -101,7 +96,7 @@ public class JobSystemCoordinator {
         * @param inst The string array containing the 6 elements required for signup.
         * @return success or failure message to be printed.
         */
-        public static String signUp(String[] inst) {
+        public static void signUp(String[] inst) {
 
             String name = inst[1];
             String email = inst[2];
@@ -112,36 +107,17 @@ public class JobSystemCoordinator {
 
             // - CREATE THE APPLICANT
             signUpManager.addApplicant(name, email, phone, address, creditCard, expirationDate);
-
-            //System.out.println(newApplicant.getEmail());
-            //if (newApplicant.getEmail() == email) {
-            //    System.out.println(error);
-            //} else {
-            //    System.out.println("Test...");
-            //}
-
-
-
-
-
-
-            //  - IF CREATION SUCCESSFUL (APPLICANT DOES NOT EXIST)
-            //   - PROCESS PAYMENT
-            //  - ELSE RETURN MESSAGE THAT THE APPLICANT DOES EXIST
-
-            return "@1 SUCCESS SIGN UP";
         }
 
         /**
         * Returns all available jobs stored in the system.
         * @return success or failure message to be printed.
         */
-        public static String viewAvailableJobs() {
+        public static void viewAvailableJobs() {
             // FROM THE HOB MANAGER SHOW GET THE JOB LIST
             // FILTER BY AVAILABLE JOBS
             // DISPLAY
             jobManager.printAvailableJobs();
-            return "@2 100 AVAILABLE JOBS";
         }
 
         /**
@@ -149,24 +125,13 @@ public class JobSystemCoordinator {
         * @param inst string array contains the 4 elements needed to create a new job.
         * @return success or failure message to be printed.
         */
-        public static String submitJobApplication(String[] inst) {
+        public static void submitJobApplication(String[] inst) {
             String email = inst[1];
             String jobID = inst[2];
             String coverLetter = inst[3];
             String resume = inst[4];
 
-
-
-            // GET THE APPLICATION MANAGER INSTANCE
-            // SUBMIT AN APPLICATION TO THE APPLICAITON MANAGER INSTANCE
-            // - IF APPLICANT DOES NOT EXIST OR APPLICATION ALREADY IN SYSTEM
-            //    - RETURN ERROR
-            // - ELSE RETURN SUCCESS MESSAGE
-
             appManager.submitApplication(email, jobID, coverLetter, resume);
-
-
-            return "@3 SUBMITTED APPLICATION";
         }
 
         /**
@@ -174,16 +139,12 @@ public class JobSystemCoordinator {
         * @param inst string array contains the 2 elements needed to select an application.
         * @return success or failure message to be printed.
         */
-        public static String reviewJobApplication(String[] inst) {
+        public static void reviewJobApplication(String[] inst) {
             String email = inst[1];
             String jobID = inst[2];
 
-            // FROM THE APPLICATION MANAGER INSTANCE
-            // FIND AN APPLICATION WITH THE INPUT PARAMETERS
-            // - IF APPLICATION IS IN THE SYSTEM RETURN
-            // - ELSE PRINT ERROR MESSAGE
-
-            return "@4 REVIEW APPLICATION";
+            appManager.printApplication(email, jobID);
+            //return "@4 REVIEW APPLICATION";
         }
 
 
