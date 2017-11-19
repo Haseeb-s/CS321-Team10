@@ -170,17 +170,12 @@ public class JobSystemCoordinator {
         * @param inst string array containign the 2 paramters needed to select an application.
         * @return success or failure message to be printed.
         */
-        public static String withdrawApplication(String[] inst) {
+        public static void withdrawApplication(String[] inst) {
             String email = inst[1];
             String jobID = inst[2];
 
-            // GET THE APPLICATION INSTANCE
-            // FIND THE APPLICATION WITH THE PARAMETERS
-            // - IF AN APPLICATION WAS FOUND
-            //  - WITHDRAW APPLICATION
-            // - ELSE SHOW ERROR MESSAGE THAT APPLICATION IS NOT IN SYSTEM
-
-            return "@6 WITHDRAWING APPLICATION";
+            appManager.withdrawApplication(email, jobID);
+            //return "@6 WITHDRAWING APPLICATION";
         }
 
         /**

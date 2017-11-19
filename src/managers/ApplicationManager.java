@@ -156,6 +156,12 @@ public class ApplicationManager {
         } // END IF ELSE
     }
 
+    /**
+     * Will be used to print an application if it exists in the system or
+     * otherwise print an error message
+     * @param email is the email address of the applicant
+     * @param jobID is the jobID of the job opening
+     */
     public void printApplication(String email, String jobID) {
         Application foundApplication = getApplication(email, jobID);
 
@@ -186,6 +192,24 @@ public class ApplicationManager {
      * @param jobID the jobID
      */
     public void withdrawApplication(String email, String jobID) {
+
+        String success = String.format("==========WITHDRAWING APPLICATION SUCCESS==========\n" +
+                        "Following job application successfully withdrawn:\n" +
+                        "Applicant email: %s\n" +
+                        "Job ID: %s\n",email, jobID);
+
+        String failure = String.format("==========WITHDRAWING APPLICATION FAILURE==========\n" +
+                "Job/User does not exist or application is not valid!\n");
+
+
+        // FIND THE APPLICATION IN THE SYSTEM
+        Application foundApplication = getApplication(email, jobID);
+        if (foundApplication != null) { // APPLICATION EXISTS
+            foundApplication.withdrawApplication();
+            System.out.println(success);
+        } else {
+            System.out.println(failure);
+        }
         // CHECK IF AN APPLICATION WITH THE EMAIL AND JOB ID EXISTS IN APPLICATIONS
         // IF IT DOES MARK AS WITHDRAWN
     }

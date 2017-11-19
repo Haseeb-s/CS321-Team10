@@ -19,6 +19,7 @@ public class Application {
     private String status;
     private LocalDate dateApplied;
     private LocalDate dateWithdrawn;
+    private Boolean withdrawn = false;
     private Job job;
     private Applicant applicant;
     private ArrayList<LocalDateTime> interviews;
@@ -128,8 +129,9 @@ public class Application {
      * Withdrawing an application, changes the status
      * @param currentDate expects the current date in the system
      */
-    public void withdrawApplication(LocalDate currentDate) {
-        dateWithdrawn = currentDate;
+    public void withdrawApplication() {
+        this.dateWithdrawn = JobSystemCoordinator.timer.getCurrentDate();
+        this.withdrawn = true;
     }
 
     /**
