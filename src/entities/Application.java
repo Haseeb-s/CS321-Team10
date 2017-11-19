@@ -2,7 +2,7 @@ package entities;
 
 import entities.Job;
 import entities.Applicant;
-
+import coordinators.JobSystemCoordinator;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -26,13 +26,13 @@ public class Application {
     /**
      * Constructor requires the current date to create an application
      * @param job the job instance
-     * @param applicant the applicant instance
-     * @param currentDate the current date from the timer class
+     * @param applicant the applicant instance*
      */
-    public Application(Job job, Applicant applicant, LocalDate currentDate) {
-        this.dateApplied = currentDate;
+    public Application(Job job, Applicant applicant) {
         this.job = job;
         this.applicant = applicant;
+        this.dateApplied = JobSystemCoordinator.timer.getCurrentDate();
+
     }
 
     /**

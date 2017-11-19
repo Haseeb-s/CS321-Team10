@@ -15,10 +15,10 @@ import entities.Applicant;
  **/
 
 public class JobSystemCoordinator {
-    private static ApplicationManager appManager = new ApplicationManager();
+    public static ApplicationManager appManager = new ApplicationManager();
     public static JobManager jobManager = new JobManager();
-    private static ReportManager reportManager = new ReportManager();
-    private static SignUpManager signUpManager = new SignUpManager();
+    public static ReportManager reportManager = new ReportManager();
+    public static SignUpManager signUpManager = new SignUpManager();
     public static Timer timer = new Timer();
 
     /**
@@ -155,11 +155,16 @@ public class JobSystemCoordinator {
             String coverLetter = inst[3];
             String resume = inst[4];
 
+
+
             // GET THE APPLICATION MANAGER INSTANCE
             // SUBMIT AN APPLICATION TO THE APPLICAITON MANAGER INSTANCE
             // - IF APPLICANT DOES NOT EXIST OR APPLICATION ALREADY IN SYSTEM
             //    - RETURN ERROR
             // - ELSE RETURN SUCCESS MESSAGE
+
+            appManager.submitApplication(email, jobID, coverLetter, resume);
+
 
             return "@3 SUBMITTED APPLICATION";
         }
