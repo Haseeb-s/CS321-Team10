@@ -55,8 +55,14 @@ public class ApplicationManager {
         // IF FOUND ADD APPLICATION TO ARRAY LIST
         // RETURN ARRAY LIST
 
-
         ArrayList<Application> appList = new ArrayList<Application>();
+        for (Application app : applications) {
+            if (app.getApplicant().getEmail().equals(email)) {
+                appList.add(app);
+            } // END IF
+        } // END FOR
+
+
         return appList;
     }
 
@@ -154,6 +160,33 @@ public class ApplicationManager {
         } else {
             System.out.println(failure);
         } // END IF ELSE
+    }
+
+    /**
+     * Prints the dashboard for a particular user showing the jobs and their status
+     * @param email the email address of the user
+     */
+    public void printDashboard(String email) {
+
+        String header = "=========DASHBOARD - jsnow@nightwatch.com==========\n" +
+                        "Job ID\t\t\t Status\n" +
+                        "--------------------------------";
+        System.out.println(header);
+
+        String withdrawnIDS = "";
+
+        // ITERATE OVER APPLICANT LIST
+        ArrayList<Application> appList = getApplicationsByUser(email);
+        for (Application app : appList) {
+            if (!app.isWithdrawn()) {
+                System.out.println(String.format("%s\t\t\t%s", app.getJob().getJobID(), app.getJob().getStatus()));
+            } else {
+                withdrawnIDS += app.getJob().getJobID() +"\n";
+            } // END FOR
+        } // END FOR
+
+        System.out.println("\nWithdrawn application list:");
+        System.out.println(withdrawnIDS+"\n");
     }
 
     /**

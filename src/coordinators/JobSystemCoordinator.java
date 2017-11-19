@@ -153,7 +153,7 @@ public class JobSystemCoordinator {
         * @param inst string array containing the paramter needed to select the relevant information.
         * @return string containing the data to be displayed.
         */
-        public static String viewDashboard(String[] inst) {
+        public static void viewDashboard(String[] inst) {
             String email = inst[1];
 
             // SHOW THE DASHBOARD FOR THE USER
@@ -162,7 +162,8 @@ public class JobSystemCoordinator {
             // FIND ALL APPLICATIONS FOR A PARTICULAR USER
             // PRINT THE APPLICATIONS
 
-            return "@5 VIEW DASHBOARD";
+            appManager.printDashboard(email);
+            //return "@5 VIEW DASHBOARD";
         }
 
         /**

@@ -33,7 +33,6 @@ public class Application {
         this.job = job;
         this.applicant = applicant;
         this.dateApplied = JobSystemCoordinator.timer.getCurrentDate();
-
     }
 
     /**
@@ -132,6 +131,15 @@ public class Application {
     public void withdrawApplication() {
         this.dateWithdrawn = JobSystemCoordinator.timer.getCurrentDate();
         this.withdrawn = true;
+    }
+
+    /**
+     * Gets the withdrawn status of an application
+     *
+     * @return returns a boolean
+     */
+    public boolean isWithdrawn() {
+        return this.withdrawn;
     }
 
     /**
