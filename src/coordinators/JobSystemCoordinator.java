@@ -214,6 +214,7 @@ public class JobSystemCoordinator {
             // - IF JOB IS IN THE SYSTEM
             //  - REMOVE JOB
             // - ELSE PRINT ERROR
+            jobManager.removeJob(jobID);
 
             return "@8 REMOVE A JOB";
         }

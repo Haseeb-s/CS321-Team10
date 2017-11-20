@@ -168,9 +168,9 @@ public class ApplicationManager {
      */
     public void printDashboard(String email) {
 
-        String header = "=========DASHBOARD - jsnow@nightwatch.com==========\n" +
+        String header = String.format("=========DASHBOARD - %s==========\n" +
                         "Job ID\t\t\t Status\n" +
-                        "--------------------------------";
+                        "--------------------------------",email);
         System.out.println(header);
 
         String withdrawnIDS = "";
