@@ -9,6 +9,7 @@ import entities.Application;
 import entities.Job;
 
 /**
+ *
  * Timer will keep track of current date and provide time signals to other manager classes.
  * @author Paul Brown
  */
