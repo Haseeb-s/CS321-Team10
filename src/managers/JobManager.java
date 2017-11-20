@@ -66,12 +66,15 @@ public class JobManager{
         //Will return the String jobID that has been removed
         for(int i = 0; i < jobs.size(); i++){
             this.currentJob = jobs.get(i);
-            if(jobID.compareTo(currentJob.getJobID()) == 0){
+            if(jobID.equals(currentJob.getJobID())){
                 jobs.remove(i);
-                return this.currentJob.getJobID();
+                String success = String.format("============REMOVING A JOB SUCCESS==============\n" +
+                        "The job with ID %s has been removed successfully.\n",jobID);
+                System.out.println(success);
+                return currentJob.getJobID();
             }
         }
-        return "";
+        return "JOB NOT FOUND";
     }
 
 
@@ -107,6 +110,16 @@ public class JobManager{
             this.currentJob = jobs.get(i);
             if(this.currentJob.getJobID().compareTo(newJob.getJobID())==0){
                 jobs.set(i,newJob);
+                String success = String.format("=========JOB POSTING MODIFICATION SUCCESS=========\n"+
+                        "A new job has been posted with following details:\n"+
+                        "Job ID: %s\n"+
+                        "Job Name: %s\n"+
+                        "Job Type: %s\n"+
+                        "Salary: %s\n"+
+                        "Job Description: %s\n"+
+                        "Expiration Date: %s\n"+
+                        "Contact email: %s\n", jobID,jobTitle,jobType,salary,jobDescription,expirationDate,contactEmail);
+                System.out.println(success);
                 return true;
             }
         }
@@ -140,7 +153,28 @@ public class JobManager{
         return false;
     }
 
+    public void closeJobHiring(String jobID, String email)
+    {
+        currentJob = getJobAtIndex(jobID);
+        currentJob.setStatus("CLOSED");
+        String success = String.format("============CLOSING A JOB SUCCESS==============\n" +
+                "Job ID: %s\n" +
+                "Hired Candidates: %s\n",jobID,email);
+        System.out.println(success);
+    }
+
+    public Job getJobAtIndex(String jobID){
+        for(Job job: jobs){
+            if(job.getJobID().equals(jobID))
+                return job;
+        }
+        return null;
+    }
+    public void viewSpecificJob(String jobID) {
+        System.out.println(getJobAtIndex(jobID).toString());
+    }
     public ArrayList<Job> getJobs(){
         return jobs;
     }
+
 }

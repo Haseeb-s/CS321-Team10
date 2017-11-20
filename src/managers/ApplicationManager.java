@@ -3,12 +3,16 @@ package managers;
 import managers.Timer;
 import entities.Application;
 import entities.Job;
+import entities.Applicant;
+import coordinators.JobSystemCoordinator;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
  * The application manager class interacts with the entities job and application
  * and allows the addition and withdrawal of job applications in the system.
+ *
+ * @author Mathias Wiesbauer
  */
 public class ApplicationManager {
 
@@ -25,8 +29,17 @@ public class ApplicationManager {
         // TRY TO FIND AN APPLICATION CONTAINING THE EMAIL AND JOB ID
         // IF FOUND RETURN THE APPLICATION
         // OTHERWISE RETURN NULL
-        Application application = new Application();
-        return application;
+
+        Application applicationNotFound = null;
+        // CHECK IF APPLICATION ALREADY EXISTS IN THE SYSTEM IF IT EXISTS RETURN IT
+        for (Application application : applications) {
+            if (application.getApplicant().getEmail().equals(email) && application.getJob().getJobID().equals(jobID)) {
+                return application;
+            } // END IF
+        } // END FOR
+
+        // RETURN NULL
+        return applicationNotFound;
     }
 
 
@@ -42,8 +55,14 @@ public class ApplicationManager {
         // IF FOUND ADD APPLICATION TO ARRAY LIST
         // RETURN ARRAY LIST
 
-
         ArrayList<Application> appList = new ArrayList<Application>();
+        for (Application app : applications) {
+            if (app.getApplicant().getEmail().equals(email)) {
+                appList.add(app);
+            } // END IF
+        } // END FOR
+
+
         return appList;
     }
 
@@ -88,16 +107,116 @@ public class ApplicationManager {
     }
 
     /**
-     * Adds an application to the system
+     * Adds an application to the system if the application does not yet exist
      * @param email the email address of the applicant
      * @param jobID the job ID the application will be associated with
      * @param coverLetter the applicants cover letter
      * @param resume the applicants resume
      */
     public void submitApplication(String email, String jobID, String coverLetter, String resume) {
-        // CHECK IF AN APPLICATION WITH THE SAME EMAIL AND JOB ID EXISTS ALREADY
-        // IF NOT CREATE A NEW APPLICATION
-        // ADD NEW APPLICATION TO APPLICATIONS
+
+        String success = String.format("==============JOB APPLICATION SUCCESS==============\n" +
+                "Applicant email: %s\n" +
+                "Job ID: %s\n", email, jobID);
+
+        String failure = String.format("==============JOB APPLICATION FAILED==============\n" +
+                "Applicant email: %s Job ID: %s\n", email, jobID);
+
+        // CHECK IF THE APPLICATION ALREADY EXISTS IN THE SYSTEM
+        Application application = getApplication(email, jobID);
+        if (application != null ) {     // APPLICATION EXISTS ALREADY
+            System.out.println(failure);
+            return;
+        }
+
+        // CHECK IF THE JOB ID IS IN THE SYSTEM
+        Job jobToApplyFor = null;
+        ArrayList<Job> jobs = JobSystemCoordinator.jobManager.jobs;
+        for (Job job : jobs) {
+            if (job.getJobID().equals(jobID)) {
+                jobToApplyFor = job;
+            } // END IF
+        } // END FOR
+
+        // CHECK IF THE APPLICANT IS IN THE SYSTEM
+        Applicant applicantApplying = null;
+        ArrayList<Applicant> applicants = JobSystemCoordinator.signUpManager.applicants;
+        for (Applicant applicant : applicants) {
+            if (applicant.getEmail().equals(email)) {
+                applicantApplying = applicant;
+            } // END IF
+        } // END FOR
+
+
+        // IF JOB AND APPLICANT EXIST CREATE APPLICATION OBJECT
+        if (jobToApplyFor != null && applicantApplying != null) {
+            Application newApplication = new Application(jobToApplyFor, applicantApplying);
+            newApplication.setResume(resume);
+            newApplication.setCoverLetter(coverLetter);
+            applications.add(newApplication);
+            System.out.println(success);
+
+            // OTHERWISE PRINT FAILURE MESSAGE
+        } else {
+            System.out.println(failure);
+        } // END IF ELSE
+    }
+
+    /**
+     * Prints the dashboard for a particular user showing the jobs and their status
+     * @param email the email address of the user
+     */
+    public void printDashboard(String email) {
+
+        String header = String.format("=========DASHBOARD - %s==========\n" +
+                "Job ID\t\t\t Status\n" +
+                "--------------------------------",email);
+        System.out.println(header);
+
+        String withdrawnIDS = "";
+
+        // ITERATE OVER APPLICANT LIST
+        ArrayList<Application> appList = getApplicationsByUser(email);
+        for (Application app : appList) {
+            if (!app.isWithdrawn()) {
+                System.out.println(String.format("%s\t\t\t%s", app.getJob().getJobID(), app.getJob().getStatus()));
+            } else {
+                withdrawnIDS += app.getJob().getJobID() +"\n";
+            } // END FOR
+        } // END FOR
+
+        System.out.println("\nWithdrawn application list:");
+        System.out.println(withdrawnIDS+"\n");
+    }
+
+    /**
+     * Will be used to print an application if it exists in the system or
+     * otherwise print an error message
+     * @param email is the email address of the applicant
+     * @param jobID is the jobID of the job opening
+     */
+    public void printApplication(String email, String jobID) {
+        Application foundApplication = getApplication(email, jobID);
+
+        if (foundApplication != null) {
+
+
+            String success = String.format("==============JOB APPLICATION DETAILS==============\n" +
+                            "Applicant email: %s\n" +
+                            "Job ID: %s\n" +
+                            "Submitted Cover Letter: %s\n" +
+                            "Submitted Resume: %s\n", email, jobID,
+                    foundApplication.getCoverLetter(), foundApplication.getResume());
+
+            System.out.println(success);
+
+        } else {
+            String failure = String.format("==========JOB APPLICATION DETAILS FAILURE==========\n" +
+                    "Applicant email: %s\n" +
+                    "Job ID: %s\n", email, jobID);
+
+        }
+
     }
 
     /**
@@ -106,6 +225,24 @@ public class ApplicationManager {
      * @param jobID the jobID
      */
     public void withdrawApplication(String email, String jobID) {
+
+        String success = String.format("==========WITHDRAWING APPLICATION SUCCESS==========\n" +
+                "Following job application successfully withdrawn:\n" +
+                "Applicant email: %s\n" +
+                "Job ID: %s\n",email, jobID);
+
+        String failure = String.format("==========WITHDRAWING APPLICATION FAILURE==========\n" +
+                "Job/User does not exist or application is not valid!\n");
+
+
+        // FIND THE APPLICATION IN THE SYSTEM
+        Application foundApplication = getApplication(email, jobID);
+        if (foundApplication != null) { // APPLICATION EXISTS
+            foundApplication.withdrawApplication();
+            System.out.println(success);
+        } else {
+            System.out.println(failure);
+        }
         // CHECK IF AN APPLICATION WITH THE EMAIL AND JOB ID EXISTS IN APPLICATIONS
         // IF IT DOES MARK AS WITHDRAWN
     }

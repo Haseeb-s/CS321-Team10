@@ -23,6 +23,10 @@ public class SignUpManager {
         //Will go through the arrayList of applicants
         //Then if an email matches then return all that applicant's data
         //if not then return null
+        for(Applicant currentApplicant : applicants){
+            if(currentApplicant.getEmail().equals(email))
+                return currentApplicant;
+        }
         return null;
     }
 

@@ -2,7 +2,7 @@ package entities;
 
 import entities.Job;
 import entities.Applicant;
-
+import coordinators.JobSystemCoordinator;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -19,6 +19,7 @@ public class Application {
     private String status;
     private LocalDate dateApplied;
     private LocalDate dateWithdrawn;
+    private Boolean withdrawn = false;
     private Job job;
     private Applicant applicant;
     private ArrayList<LocalDateTime> interviews;
@@ -26,13 +27,12 @@ public class Application {
     /**
      * Constructor requires the current date to create an application
      * @param job the job instance
-     * @param applicant the applicant instance
-     * @param currentDate the current date from the timer class
+     * @param applicant the applicant instance*
      */
-    public Application(Job job, Applicant applicant, LocalDate currentDate) {
-        this.dateApplied = currentDate;
+    public Application(Job job, Applicant applicant) {
         this.job = job;
         this.applicant = applicant;
+        this.dateApplied = JobSystemCoordinator.timer.getCurrentDate();
     }
 
     /**
@@ -128,8 +128,19 @@ public class Application {
      * Withdrawing an application, changes the status
      * @param currentDate expects the current date in the system
      */
-    public void withdrawApplication(LocalDate currentDate) {
-        dateWithdrawn = currentDate;
+    public void withdrawApplication() {
+        this.dateWithdrawn = JobSystemCoordinator.timer.getCurrentDate();
+        this.withdrawn = true;
+
+    }
+
+    /**
+     * Gets the withdrawn status of an application
+     *
+     * @return returns a boolean
+     */
+    public boolean isWithdrawn() {
+        return this.withdrawn;
     }
 
     /**

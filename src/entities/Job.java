@@ -55,8 +55,8 @@ public class Job {
         this.jobDescrip = jobDescrip;
         this.salary = salary;
         this.currentStatus = "AVAILABLE";
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
+        DateTimeFormatter formatter;
+            formatter = DateTimeFormatter.ofPattern("MM/dd/y");
         this.expDate = LocalDate.parse(expDate, formatter);
     }
 
@@ -112,6 +112,9 @@ public class Job {
     public String getStatus() {
         // return current status
         return currentStatus;
+    }
+    public void setStatus(String status){
+        this.currentStatus = status;
     }
 
     /**
