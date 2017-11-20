@@ -92,6 +92,14 @@ public class ApplicationManager {
         // RETURN ARRAY LIST
 
         ArrayList<Application> appList = new ArrayList<Application>();
+
+        // ITERATE OVER THE APPLICATIONS
+        for (Application app : applications) {
+            if (app.getJob().getJobID().equals(jobID) && !app.isWithdrawn()) {
+                appList.add(app);
+            } // END IF
+        } // end for
+
         return appList;
     }
 
@@ -230,13 +238,16 @@ public class ApplicationManager {
         int applicantCounter = 0;
         String applicantEmails = "";
 
+        // ITERATE OVER THE APPLICATION LIST
         for (Application app : applications) {
+            // IF APPLICATION MATCHES JOBID AND APPLICATION IS NOT WITHDRAWN ADD EMAIL ADDRESS
             if (app.getJob().getJobID().equals(jobID) && !app.isWithdrawn()) {
                 applicantEmails += app.getApplicant().getEmail() + "\n\t\t";
                 applicantCounter += 1;
             }
         }
 
+        // IF THERE WAS AT LEAST ONE VALID APPLICANT PRINT THE MESSAGE
         if (applicantCounter != 0) {
             String success = String.format("==========PENDING JOB APPLICATION for a JOB=======\n" +
                     "Job ID: %s\n" +
