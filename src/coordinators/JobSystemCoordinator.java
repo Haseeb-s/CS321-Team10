@@ -280,7 +280,7 @@ public class JobSystemCoordinator {
         */
         public static String monthlyReport(String[] inst) {
             String month = inst[1];      // FORMATTED AS 11/17
-
+            System.out.println(reportManager.toString(month));
             // GET REPORT MANAGER INSTANCE
             // - GET TOTAL JOBS CREATED
             // - GET POST FILLED JOBS

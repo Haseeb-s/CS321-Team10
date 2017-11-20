@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 public class Job {
     public String jobName, contactEmail, jobType, jobID, jobDescrip, salary;
     public String currentStatus;
+    private LocalDate creationDate = LocalDate.now();
     private LocalDate expDate;
     private int numberofApplicants;
 
@@ -134,6 +135,14 @@ public class Job {
         this.jobDescrip = jobDescrip;
         this.salary = salary;
         this.expDate = LocalDate.parse(setDate);
+    }
+
+    /**
+     * gets the date of which the job was created
+     * @return the date the job was created
+     */
+    public String getCreationDate() {
+        return creationDate.toString();
     }
 
     /**

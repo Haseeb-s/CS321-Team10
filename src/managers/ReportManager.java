@@ -12,6 +12,8 @@ package managers;
 import coordinators.JobSystemCoordinator;
 import entities.Job;
 import managers.JobManager;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ReportManager{
@@ -21,7 +23,6 @@ public class ReportManager{
 
 
     public ReportManager(){
-     calculateAverages();
     }
 
     /**
@@ -29,9 +30,9 @@ public class ReportManager{
      * other classes.
      *
      * It would be easiest and most efficent to populate all the data fields using the arrayList containing the jobs
-     *
+     * @param monthYear is the inputted string date that the report should print
      */
-    private void calculateAverages(){
+    private void calculateAverages(String monthYear) {
 
         /*
           set avgNumApps to numberofJobCreated / number of total applicants
@@ -40,43 +41,65 @@ public class ReportManager{
         */
         ArrayList<Job> newJob = JobSystemCoordinator.jobManager.getJobs();
         int filledApplicants = 0, notAvailApplicants = 0, numberOfApplicants = 0;
-        for(Job temp: newJob){
+        for (Job temp : newJob) {
 
-            numberofJobCreated++;
-            numberOfApplicants += temp.getNumApplicants();
-            if(temp.currentStatus.equals("FILLED")) {
-                jobPostingsFilled++;
-                jobsNoLongerAvailable++;
-                filledApplicants += temp.getNumApplicants();
-                notAvailApplicants += temp.getNumApplicants();
+            if (checkDates(monthYear, temp.getCreationDate())) {
+
+                numberofJobCreated++;
+                numberOfApplicants += temp.getNumApplicants();
+                if (temp.currentStatus.toUpperCase().equals("FILLED")) {
+                    jobPostingsFilled++;
+                    jobsNoLongerAvailable++;
+                    filledApplicants += temp.getNumApplicants();
+                    notAvailApplicants += temp.getNumApplicants();
+                }
+                if (temp.currentStatus.toUpperCase().equals("EXPIRED")) {
+                    jobsNoLongerAvailable++;
+                    notAvailApplicants += temp.getNumApplicants();
+                }
+                if (temp.currentStatus.toUpperCase().equals("AVAILABLE"))
+                    currentNumberOfJobs++;
+                if (temp.jobType.toUpperCase().equals("STUDENT"))
+                    numJobListingsStudents++;
+                if (temp.jobType.toUpperCase().equals("STAFF"))
+                    numJobListingsStaff++;
+                if (temp.jobType.toUpperCase().equals("FACULTY"))
+                    numJobListingsFaculty++;
+
+
             }
-            if(temp.currentStatus.equals("EXPIRED")) {
-                jobsNoLongerAvailable++;
-                notAvailApplicants += temp.getNumApplicants();
+
+            if (numberofJobCreated != 0) {
+                avgNumApps = numberOfApplicants / numberofJobCreated;
             }
-            if(temp.currentStatus.equals("AVAILABLE"))
-                currentNumberOfJobs++;
-            if(temp.jobType.equals("STUDENTS"))
-                numJobListingsStudents++;
-            if(temp.jobType.equals("STAFF"))
-                numJobListingsStaff++;
-            if(temp.jobType.equals("FACULTY"))
-                numJobListingsFaculty++;
 
+            if (jobPostingsFilled != 0) {
+                avgNumPostFilled = filledApplicants / jobPostingsFilled;
+            }
+
+            if (jobsNoLongerAvailable != 0) {
+                avgNumAppsNotAvailJobs = notAvailApplicants / jobsNoLongerAvailable;
+            }
 
         }
+    }
 
-        if (currentNumberOfJobs != 0) {
-            avgNumApps = numberOfApplicants / numberofJobCreated;
-        }
+    /**
+     * This method is used to make sure the reports being checked is within the proper date/month
+     * @param monthYear Holds the string containing the required month and year for the report (XX/XX)
+     * @param date the date of which the current job was created
+     * @return
+     */
+    public boolean checkDates (String monthYear, String date){
+        String month = monthYear.substring(0, monthYear.indexOf("/"));
+        String year = monthYear.substring(monthYear.indexOf("/") + 1, monthYear.length());
+        String checkYear = date.toString().substring(2,4);
+        String checkMonth = date.toString().substring(5,7);
+        if (month.equals(checkMonth) && year.equals(checkYear))
+            return true;
+        else
+            return false;
 
-        if (jobPostingsFilled != 0) {
-            avgNumPostFilled = filledApplicants / jobPostingsFilled;
-        }
-
-        if (jobsNoLongerAvailable != 0) {
-            avgNumAppsNotAvailJobs = notAvailApplicants / jobsNoLongerAvailable;
-        }
 
     }
 
@@ -85,7 +108,9 @@ public class ReportManager{
      *
      * @return The string representations of this object
      */
-    public String toString(){
+    public String toString(String monthyear){
+
+        calculateAverages(monthyear);
         // build string displaying data in global variables in a readable format
         return "=================MONTHLY STATISTICS================\n" +
                 "Month : " + JobSystemCoordinator.timer.getCurrentDate().getMonth() + "\n" +
