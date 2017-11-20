@@ -15,7 +15,11 @@ import managers.JobManager;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+/**
+ *  ReportManager communicates with other classes to generate a readable report
+ *  containing information pertaining to job postings.
+ *
+ */
 public class ReportManager{
     private int numberofJobCreated = 0, currentNumberOfJobs = 0, jobPostingsFilled = 0, jobsNoLongerAvailable = 0,
         numJobListingsStudents = 0, numJobListingsStaff = 0, numJobListingsFaculty = 0;
