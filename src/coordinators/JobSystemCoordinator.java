@@ -17,7 +17,7 @@ import entities.Applicant;
 public class JobSystemCoordinator {
     public static ApplicationManager appManager = new ApplicationManager();
     public static JobManager jobManager = new JobManager();
-    private static ReportManager reportManager = new ReportManager();
+    public static ReportManager reportManager = new ReportManager();
     public static SignUpManager signUpManager = new SignUpManager();
     public static Timer timer = new Timer();
 
@@ -348,7 +348,7 @@ public class JobSystemCoordinator {
             // CLOSE JOB
             // UPDATE REPORT MANAGER STATS
             // REMOVE APPLICATIONS ASSOCIATED WITH JOB
-
+            jobManager.closeJobHiring(jobID,email);
             return "@16 CLOSE JOB WITH HIRING";
         }
 

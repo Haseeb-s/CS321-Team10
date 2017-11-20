@@ -131,6 +131,7 @@ public class Application {
     public void withdrawApplication() {
         this.dateWithdrawn = JobSystemCoordinator.timer.getCurrentDate();
         this.withdrawn = true;
+
     }
 
     /**
