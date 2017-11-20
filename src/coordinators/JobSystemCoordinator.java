@@ -348,7 +348,7 @@ public class JobSystemCoordinator {
             // CLOSE JOB
             // UPDATE REPORT MANAGER STATS
             // REMOVE APPLICATIONS ASSOCIATED WITH JOB
-
+            jobManager.closeJobHiring(jobID,email);
             return "@16 CLOSE JOB WITH HIRING";
         }
 

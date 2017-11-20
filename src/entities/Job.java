@@ -113,6 +113,9 @@ public class Job {
         // return current status
         return currentStatus;
     }
+    public void setStatus(String status){
+        this.currentStatus = status;
+    }
 
     /**
      * Set method used to edit/modify the job after having already been created. Useful to make adjustments or include

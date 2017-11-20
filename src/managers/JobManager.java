@@ -66,14 +66,15 @@ public class JobManager{
         //Will return the String jobID that has been removed
         for(int i = 0; i < jobs.size(); i++){
             this.currentJob = jobs.get(i);
-            if(jobID.equals(currentJob.getJobID()) == 0){
+            if(jobID.equals(currentJob.getJobID())){
                 jobs.remove(i);
                 String success = String.format("============REMOVING A JOB SUCCESS==============\n" +
-                        "The job with ID %s has been removed successfully.",jobID);
-                return this.currentJob.getJobID();
+                        "The job with ID %s has been removed successfully.\n",jobID);
+                System.out.println(success);
+                return currentJob.getJobID();
             }
         }
-        return "";
+        return "JOB NOT FOUND";
     }
 
 
@@ -150,6 +151,16 @@ public class JobManager{
         if(expiredJobs.size()!=0)
             return true;
         return false;
+    }
+
+    public void closeJobHiring(String jobID, String email)
+    {
+        currentJob = getJobAtIndex(jobID);
+        currentJob.setStatus("CLOSED");
+        String success = String.format("============CLOSING A JOB SUCCESS==============\n" +
+                "Job ID: %s\n" +
+                "Hired Candidates: %s\n",jobID,email);
+        System.out.println(success);
     }
 
     public Job getJobAtIndex(String jobID){
