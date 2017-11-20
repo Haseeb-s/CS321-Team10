@@ -227,12 +227,51 @@ public class ApplicationManager {
 
     }
 
-
+    /**
+     * Prints all the jobs in the system and the applications associated with them
+     */
     public void viewPendingJobApplications() {
 
+        String header = String.format("==============PENDING JOB APPLICATIONS=============\n" +
+                "Job ID\t\t\t Applicant list\n" +
+                "----------------------------------------");
+
+        String delimiter = "----------------------------------------";
+
+        // GET THE JOBS FROM THE JOB MANAGER
+        ArrayList<Job> jobs = JobSystemCoordinator.jobManager.getJobs();
+        // PRINT THE HEADER
+        System.out.println(header);
+        // ITERATE OVER EACH JOB AND CREATE A NEW ROW
+        for (Job job : jobs) {
+            System.out.print(job.getJobID() + "\t\t");
+
+            // ITERATE OVER EACH APPLICATION AND MATCH WITH CURRENT JOB
+            int applicantCounter = 0;
+            String applicantEmails = "";
+            for (Application app : applications) {
+                // IF APPLICATION MATCHES JOBID AND APPLICATION IS NOT WITHDRAWN ADD EMAIL ADDRESS
+                if (app.getJob().getJobID().equals(job.getJobID()) && !app.isWithdrawn()) {
+                    applicantEmails += app.getApplicant().getEmail() + ",\n\t\t";
+                    applicantCounter += 1;
+                } // END IF
+            } // END FOR
+
+            // IF THERE WAS AT LEAST ONE VALID APPLICANT PRINT THE MESSAGE
+            if (applicantCounter != 0) {
+                System.out.print(applicantEmails);
+                System.out.println("\r" + delimiter);
+            } else {
+                System.out.println("\n" + delimiter);
+            } // END IF
+        } // END FOR
+        System.out.println("\n");
     }
 
-
+    /**
+     * Print the pending job applications in the system to the console
+     * @param jobID the ID of the job in the system
+     */
     public void viewPendingJobApplications(String jobID) {
 
         int applicantCounter = 0;
@@ -242,7 +281,7 @@ public class ApplicationManager {
         for (Application app : applications) {
             // IF APPLICATION MATCHES JOBID AND APPLICATION IS NOT WITHDRAWN ADD EMAIL ADDRESS
             if (app.getJob().getJobID().equals(jobID) && !app.isWithdrawn()) {
-                applicantEmails += app.getApplicant().getEmail() + "\n\t\t";
+                applicantEmails += app.getApplicant().getEmail() + ",\n\t\t";
                 applicantCounter += 1;
             }
         }
