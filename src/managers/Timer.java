@@ -38,6 +38,13 @@ public class Timer {
         currentDate.plusDays(1);
     }
 
+    /**
+     * Compares the date of every job to a set date and if the difference is greater than a year
+     * the job is marked as no longer available (expired)
+     * @param month month to be compared
+     * @param date date to be compared
+     * @param year year to be compared
+     */
     public void expirationSignal(String month, String date, String year){
         ArrayList <Job> joblist = jobManager.getJobs();
 
