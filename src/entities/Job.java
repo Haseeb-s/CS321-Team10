@@ -152,6 +152,8 @@ public class Job {
      * @return String containing the data and description of the job
      */
     public String toString() {
+        DateTimeFormatter formatter;
+        formatter = DateTimeFormatter.ofPattern("MM/dd/y");
         //return readable formated string containing contactEmail, jobType, jobDescription, salary, expiration time
         return "=================DETAILS OF A JOB=================\n" +
                 "Details of selected job are given below:\n" +
@@ -160,7 +162,7 @@ public class Job {
                 "Job Type: " + jobType + "\n" +
                 "Salary: " + salary + "\n" +
                 "Job Description: " + jobDescrip + "\n" +
-                "Expiration Date: " + expDate.toString() + "\n" +
+                "Expiration Date: " + expDate.format(formatter) + "\n" +
                 "Contact email: " + contactEmail + "\n";
     }
 }

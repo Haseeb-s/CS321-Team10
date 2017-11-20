@@ -299,23 +299,29 @@ public class JobSystemCoordinator {
         * @return success or failure message to be printed.
         */
         public static String expirationSignal(String[] inst) {
-            String expirationDate = inst[1];  // FORMATTED AS 11/20/2017
-
+            String expDate = inst[1];  // FORMATTED AS 11/20/2017
+            String month,date,year;
+            month = expDate.toString().substring(0,2);
+            date = expDate.toString().substring(3,5);
+            year = expDate.toString().substring(8);
             // GET JOB MANAGER INSTANCE AND APPLICATION MANAGER INSTANCE
             // ITERATE OVER JOB LIST
             // - IF A JOB IS OLDER THAN THE DATE
             //  - CHECK IF JOB HAS AN APPLICATION
             //    - IF JOB HAS NO APPLICATION CLOSE AND MARK AS NO LONGER AVAIL.
-
+            timer.expirationSignal(month,date,year);
             return "@13 EXPIRATION SIGNAL";
         }
 
         /**
         * Triggers reporting activity at the end of every month.
-        * @return success or failure message to be printed.
         */
-        public static String monthEndSignal() {
-            return "@14 MONTH END SIGNAL";
+        public static void monthEndSignal()
+        {
+            timer.monthSignal();
+            System.out.println("=================MONTH END SIGNAL=================\n" +
+                    "Withdrawn applications will be cleared from the system\n" +
+                    "at end of each month.");
         }
 
             // GET TIMER INSTANCE
@@ -326,12 +332,12 @@ public class JobSystemCoordinator {
         * Triggers reporting activity at the end of every year.
         * @return success or failure message to be printed.
         */
-        public static String yearEndSignal() {
+        public static void yearEndSignal() {
 
             // GET TIMER INSTANCE
             // CALL YEAR END SIGNAL
 
-            return "@15 YEAR END SIGNAL";
+            timer.yearSignal();
         }
 
 
