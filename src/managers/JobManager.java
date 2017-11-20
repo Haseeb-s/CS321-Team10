@@ -26,7 +26,13 @@ public class JobManager{
 
     /**
      * Will add a job into the arrayList of the job
-     * @param job will contain a job information and add it to the job arrayList
+     * @param jobID will hold the job's identification
+     * @param jobTitle will hold job's name
+     * @param jobType will hold the classification
+     * @param salary will hold the salary for the job
+     * @param jobDescription the unique description for this job
+     * @param expirationDate the date that will expire the job
+     * @param contactEmail will hold the employer email
      * @return true if added correctly
      */
     public void addJob(String jobID, String jobTitle, String jobType,
@@ -97,7 +103,13 @@ public class JobManager{
     /**
      * Will search for the job then will add the modified job
      * in the ArrayList
-     * @param job Will contain all the new job information
+     * @param jobID will hold the job's identification
+     * @param jobTitle will hold job's name
+     * @param jobType will hold the classification
+     * @param salary will hold the salary for the job
+     * @param jobDescription the unique description for this job
+     * @param expirationDate the date that will expire the job
+     * @param contactEmail will hold the employer email
      * @return true if successfully edited
      */
     public boolean modifyJob(String jobID, String jobTitle, String jobType,
@@ -148,6 +160,12 @@ public class JobManager{
         }
     }
 
+    /**
+     * Will close a job and send to all other applicants that
+     * job has been filled
+     * @param jobID will grab the id of the job that will be closed
+     * @param email will be the email of who was hired
+     */
     public void closeJobHiring(String jobID, String email)
     {
         appList= JobSystemCoordinator.appManager.getPendingApplications(jobID);
@@ -160,10 +178,14 @@ public class JobManager{
                         "Job ID: %s\n" +
                         "Hired Candidates: %s\n", currentJob.getJobID(), email);
                 System.out.println(success);
-
-
     }
 
+    /**
+     * Will grab a job at the jobID and send it back
+     * otherwise null
+     * @param jobID the job that is being searched
+     * @return the job entity will relevant information
+     */
     public Job getJobAtIndex(String jobID){
         for(Job job: jobs){
             if(job.getJobID().equals(jobID))
@@ -171,12 +193,30 @@ public class JobManager{
         }
         return null;
     }
+
+    /**
+     * Will grab a specific job and print it out to the user
+     * @param jobID the specific job they want
+     */
     public void viewSpecificJob(String jobID) {
         System.out.println(getJobAtIndex(jobID).toString());
     }
+
+    /**
+     * will send the arraylist back if needed by other classes
+     * @return the arrayList of jobs
+     */
     public ArrayList<Job> getJobs(){
         return jobs;
     }
+
+    /**
+     * Will set up the interview of the user and set
+     * their status for awaiting interview and send a confirmation
+     * of successful interview
+     * @param jobID the job that is wanted
+     * @param email the email of the applicant that will be interviewed
+     */
     public void setUpInterview(String jobID, String email){
         appList= JobSystemCoordinator.appManager.getPendingApplications(jobID);
         currentJob = getJobAtIndex(jobID);
@@ -188,10 +228,7 @@ public class JobManager{
                         "Job ID: %s\n" +
                         "Candidate list: %s\n",currentJob.getJobID(),app.getApplicant().getEmail());
                 System.out.println(success);
-
             }
-
-
         }
     }
 }
