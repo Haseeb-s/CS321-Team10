@@ -252,7 +252,7 @@ public class JobSystemCoordinator {
             // GET APPLICATION MANAGER INSTANCE
             // GET ALL PENDING JOB APPLICATIONS
             // PRINT
-
+            appManager.viewPendingJobApplications();
             return "@10 VIEW PENDING JOB APPLICATIONS";
         }
 
@@ -363,7 +363,7 @@ public class JobSystemCoordinator {
             // GET APPLICATION MANAGER
             // CALL PENDING JOB APPLICATION METHOD
             // PRINT LIST
-
+            appManager.viewPendingJobApplications(jobID);
             return "@17 VIEW PENDING JOB APPLICATIONS";
         }
 
