@@ -22,7 +22,6 @@ public class Application {
     private Boolean withdrawn = false;
     private Job job;
     private Applicant applicant;
-    private ArrayList<LocalDateTime> interviews;
 
     /**
      * Constructor requires the current date to create an application
@@ -56,16 +55,6 @@ public class Application {
      */
     public Applicant getApplicant() {
         return this.applicant;
-    }
-
-    /**
-     * Adds three time slots to the system
-     * @param currentDate the current date in the system
-     */
-    public void scheduleInterviews(LocalDate currentDate) {
-        // ADD 7 DAYS TO CURRENT DATE
-        // GENERATE LOCALDATETIME OBJECTS FOR 9:00AM, 10:00AM, 11:00AM
-        // ADD ALL THREE OBJECTS TO ARRAYLIST INTERVIEWS
     }
 
     /**

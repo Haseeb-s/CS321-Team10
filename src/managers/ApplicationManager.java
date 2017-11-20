@@ -219,6 +219,35 @@ public class ApplicationManager {
 
     }
 
+
+    public void viewPendingJobApplications() {
+
+    }
+
+
+    public void viewPendingJobApplications(String jobID) {
+
+        int applicantCounter = 0;
+        String applicantEmails = "";
+
+        for (Application app : applications) {
+            if (app.getJob().getJobID().equals(jobID) && !app.isWithdrawn()) {
+                applicantEmails += app.getApplicant().getEmail() + "\n\t\t";
+                applicantCounter += 1;
+            }
+        }
+
+        if (applicantCounter != 0) {
+            String success = String.format("==========PENDING JOB APPLICATION for a JOB=======\n" +
+                    "Job ID: %s\n" +
+                    "Applicant list: %s", jobID, applicantEmails);
+            System.out.println(success);
+            System.out.println("\n");
+        }
+
+    } // END VIEW PENDING JOB APPLICATIONS
+
+
     /**
      * Withdrawing an application from the system
      * @param email the email address of the applicant
