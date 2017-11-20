@@ -270,6 +270,8 @@ public class JobSystemCoordinator {
             //  - CALL THE SETUP INTERVIEWS METHOD
             // - ELSE RETURN ERROR
 
+            jobManager.setUpInterview(jobID, email);
+
             return "@11 SETUP INTERVIEWS";
         }
 
