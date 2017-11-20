@@ -43,6 +43,7 @@ public class ApplicationManager {
     }
 
 
+
     /**
      * Searches and returns a list of job applications from the system
      * @param email the email of the applicant
@@ -63,20 +64,6 @@ public class ApplicationManager {
         } // END FOR
 
 
-        return appList;
-    }
-
-    /**
-     * Searches and returns a list of pending job applications from the system
-     * @return returns an ArrayList of Application instances
-     */
-    public ArrayList<Application> getPendingApplications() {
-        // FOR EACH APPLICATION IN APPLICATIONS
-        // CHECK IF APPLICATION IS PENDING
-        // IF FOUND ADD APPLICATION TO ARRAY LIST
-        // RETURN ARRAY LIST
-
-        ArrayList<Application> appList = new ArrayList<Application>();
         return appList;
     }
 
@@ -103,16 +90,6 @@ public class ApplicationManager {
         return appList;
     }
 
-    /**
-     * Sets three interview slots: +7 days from current date at 9:00am,
-     * + 7 days from current day at 10:00am and +7 days from current day at 11:00am
-     * @param currentDate the current date in the system (timer)
-     */
-    public void setupInterviews(LocalDate currentDate) {
-
-        // FOR THE CURRENT APPLICATION
-        // CALL THE SCHEDULEINTERVIEWS METHOD
-    }
 
     /**
      * Adds an application to the system if the application does not yet exist
@@ -162,6 +139,7 @@ public class ApplicationManager {
             newApplication.setResume(resume);
             newApplication.setCoverLetter(coverLetter);
             applications.add(newApplication);
+            jobToApplyFor.newApplicant();
             System.out.println(success);
 
             // OTHERWISE PRINT FAILURE MESSAGE
@@ -187,7 +165,7 @@ public class ApplicationManager {
         ArrayList<Application> appList = getApplicationsByUser(email);
         for (Application app : appList) {
             if (!app.isWithdrawn()) {
-                System.out.println(String.format("%s\t\t\t%s", app.getJob().getJobID(), app.getJob().getStatus()));
+                System.out.println(String.format("%s\t\t\t%s", app.getJob().getJobID(), app.getStatus()));
             } else {
                 withdrawnIDS += app.getJob().getJobID() +"\n";
             } // END FOR
@@ -318,6 +296,7 @@ public class ApplicationManager {
         Application foundApplication = getApplication(email, jobID);
         if (foundApplication != null) { // APPLICATION EXISTS
             foundApplication.withdrawApplication();
+            foundApplication.getJob().lostApplicant();
             System.out.println(success);
         } else {
             System.out.println(failure);

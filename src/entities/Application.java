@@ -16,7 +16,7 @@ import java.util.Date;
 public class Application {
     private String resume;
     private String coverLetter;
-    private String status;
+    private String status = "Submitted";
     private LocalDate dateApplied;
     private LocalDate dateWithdrawn;
     private Boolean withdrawn = false;
