@@ -11,6 +11,24 @@ Paul Brown
 
 ## Documentation
 
+### Getting the Code
+To create a local clone please use the following command
+
+`git clone https://github.com/Haseeb-s/CS321-Team10.git`
+
+### Directory structure
+Once you cloned the program you will have the following directories.
+
+1. `src` contains the source code for the program
+2. `doc` contains the java doc
+3. `test` contains files required to test the functionality of the program
+
+
+### Checkout the latest release
+To checkout the latest release please use the following command.
+
+`git checkout master`
+
 ### Running the Program
 
 You can run the program from the `src` directory with the following command.
