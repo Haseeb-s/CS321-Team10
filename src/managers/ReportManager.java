@@ -70,7 +70,6 @@ public class ReportManager{
             }
 
             if (numberofJobCreated != 0) {
-                System.out.println(numberOfApplicants +"/"+ numberofJobCreated);
                 avgNumApps = (double)numberOfApplicants / numberofJobCreated;
             }
 
