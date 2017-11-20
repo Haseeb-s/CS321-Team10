@@ -17,7 +17,7 @@ import entities.Applicant;
 public class JobSystemCoordinator {
     public static ApplicationManager appManager = new ApplicationManager();
     public static JobManager jobManager = new JobManager();
-    public static ReportManager reportManager = new ReportManager();
+    private static ReportManager reportManager = new ReportManager();
     public static SignUpManager signUpManager = new SignUpManager();
     public static Timer timer = new Timer();
 
@@ -168,7 +168,7 @@ public class JobSystemCoordinator {
 
         /**
         * Allows an applicant to withdraw an application.
-        * @param inst string array containign the 2 paramters needed to select an application.
+        * @param inst string array containing the 2 parameters needed to select an application.
         * @return success or failure message to be printed.
         */
         public static void withdrawApplication(String[] inst) {
@@ -348,7 +348,7 @@ public class JobSystemCoordinator {
             // CLOSE JOB
             // UPDATE REPORT MANAGER STATS
             // REMOVE APPLICATIONS ASSOCIATED WITH JOB
-            jobManager.closeJobHiring(jobID,email);
+
             return "@16 CLOSE JOB WITH HIRING";
         }
 

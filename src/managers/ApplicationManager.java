@@ -1,6 +1,10 @@
 package managers;
 
+import static coordinators.JobSystemCoordinator.jobManager;
+import static coordinators.JobSystemCoordinator.signUpManager;
+import static coordinators.JobSystemCoordinator.timer;
 import managers.Timer;
+import entities.Applicant;
 import entities.Application;
 import entities.Job;
 import entities.Applicant;
@@ -11,6 +15,7 @@ import java.util.ArrayList;
 /**
  * The application manager class interacts with the entities job and application
  * and allows the addition and withdrawal of job applications in the system.
+ * @author Paul Brown
  *
  * @author Mathias Wiesbauer
  */
@@ -29,17 +34,18 @@ public class ApplicationManager {
         // TRY TO FIND AN APPLICATION CONTAINING THE EMAIL AND JOB ID
         // IF FOUND RETURN THE APPLICATION
         // OTHERWISE RETURN NULL
-
-        Application applicationNotFound = null;
-        // CHECK IF APPLICATION ALREADY EXISTS IN THE SYSTEM IF IT EXISTS RETURN IT
-        for (Application application : applications) {
-            if (application.getApplicant().getEmail().equals(email) && application.getJob().getJobID().equals(jobID)) {
-                return application;
-            } // END IF
-        } // END FOR
-
-        // RETURN NULL
-        return applicationNotFound;
+        
+        Job tempJob = new Job();
+        Applicant tempApp = new Applicant();
+        Application application = new Application();
+        for(int i = 0; i < applications.size()-1; i++)
+        {
+            application = applications.get(i);
+            tempApp = application.getApplicant();
+            tempJob = application.getJob();
+            if(tempApp.getEmail().equals(email) && tempJob.getJobID().equals(jobID)) return application;
+        }
+        return null;
     }
 
 
@@ -56,13 +62,14 @@ public class ApplicationManager {
         // RETURN ARRAY LIST
 
         ArrayList<Application> appList = new ArrayList<Application>();
-        for (Application app : applications) {
-            if (app.getApplicant().getEmail().equals(email)) {
-                appList.add(app);
-            } // END IF
-        } // END FOR
-
-
+        Applicant tempApp = new Applicant();
+        Application application = new Application();
+        for(int i = 0; i < applications.size()-1; i++)
+        {
+            application = applications.get(i);
+            tempApp = application.getApplicant();
+            if(tempApp.getEmail().equals(email)) appList.add(application);
+        }
         return appList;
     }
 
@@ -75,8 +82,14 @@ public class ApplicationManager {
         // CHECK IF APPLICATION IS PENDING
         // IF FOUND ADD APPLICATION TO ARRAY LIST
         // RETURN ARRAY LIST
-
+        
         ArrayList<Application> appList = new ArrayList<Application>();
+        Application application = new Application();
+        for(int i = 0; i < applications.size()-1; i++)
+        {
+            application = applications.get(i);
+            if(application.getStatus().equals("Pending")) appList.add(application);
+        }
         return appList;
     }
 
@@ -92,6 +105,13 @@ public class ApplicationManager {
         // RETURN ARRAY LIST
 
         ArrayList<Application> appList = new ArrayList<Application>();
+        Job tempJob = new Job();
+        Application application = new Application();
+        for(int i = 0; i < applications.size()-1; i++)
+        {
+            application = applications.get(i);
+            if(application.getStatus().equals("Pending") && application.getJob().getJobID().equals(jobID)) appList.add(application);
+        }
         return appList;
     }
 
@@ -104,6 +124,8 @@ public class ApplicationManager {
 
         // FOR THE CURRENT APPLICATION
         // CALL THE SCHEDULEINTERVIEWS METHOD
+        
+        
     }
 
     /**
@@ -114,109 +136,31 @@ public class ApplicationManager {
      * @param resume the applicants resume
      */
     public void submitApplication(String email, String jobID, String coverLetter, String resume) {
-
-        String success = String.format("==============JOB APPLICATION SUCCESS==============\n" +
-                "Applicant email: %s\n" +
-                "Job ID: %s\n", email, jobID);
-
-        String failure = String.format("==============JOB APPLICATION FAILED==============\n" +
-                "Applicant email: %s Job ID: %s\n", email, jobID);
-
-        // CHECK IF THE APPLICATION ALREADY EXISTS IN THE SYSTEM
-        Application application = getApplication(email, jobID);
-        if (application != null ) {     // APPLICATION EXISTS ALREADY
-            System.out.println(failure);
-            return;
+        // CHECK IF AN APPLICATION WITH THE SAME EMAIL AND JOB ID EXISTS ALREADY
+        // IF NOT CREATE A NEW APPLICATION
+        // ADD NEW APPLICATION TO APPLICATIONS
+        
+        Job tempJob = jobManager.getJob(jobID);
+        Applicant tempApp = signUpManager.getApplicantData(email);
+        LocalDate currentDate = timer.getCurrentDate();
+        Application application = new Application();
+        if(applications != null){
+            for(int i = 0; i < applications.size()-1; i++){
+                application = applications.get(i);
+                tempApp = application.getApplicant();
+                tempJob = application.getJob();
+                if(tempApp.getEmail().equals(email) && tempJob.getJobID().equals(jobID)){
+                    System.out.println("==============JOB APPLICATION FAILED==============\n" + 
+                                        "Job Application already exists.");
+                    return;
+                }
+            }
         }
-
-        // CHECK IF THE JOB ID IS IN THE SYSTEM
-        Job jobToApplyFor = null;
-        ArrayList<Job> jobs = JobSystemCoordinator.jobManager.jobs;
-        for (Job job : jobs) {
-            if (job.getJobID().equals(jobID)) {
-                jobToApplyFor = job;
-            } // END IF
-        } // END FOR
-
-        // CHECK IF THE APPLICANT IS IN THE SYSTEM
-        Applicant applicantApplying = null;
-        ArrayList<Applicant> applicants = JobSystemCoordinator.signUpManager.applicants;
-        for (Applicant applicant : applicants) {
-            if (applicant.getEmail().equals(email)) {
-                applicantApplying = applicant;
-            } // END IF
-        } // END FOR
-
-
-        // IF JOB AND APPLICANT EXIST CREATE APPLICATION OBJECT
-        if (jobToApplyFor != null && applicantApplying != null) {
-            Application newApplication = new Application(jobToApplyFor, applicantApplying);
-            newApplication.setResume(resume);
-            newApplication.setCoverLetter(coverLetter);
-            applications.add(newApplication);
-            System.out.println(success);
-
-        // OTHERWISE PRINT FAILURE MESSAGE
-        } else {
-            System.out.println(failure);
-        } // END IF ELSE
-    }
-
-    /**
-     * Prints the dashboard for a particular user showing the jobs and their status
-     * @param email the email address of the user
-     */
-    public void printDashboard(String email) {
-
-        String header = String.format("=========DASHBOARD - %s==========\n" +
-                        "Job ID\t\t\t Status\n" +
-                        "--------------------------------",email);
-        System.out.println(header);
-
-        String withdrawnIDS = "";
-
-        // ITERATE OVER APPLICANT LIST
-        ArrayList<Application> appList = getApplicationsByUser(email);
-        for (Application app : appList) {
-            if (!app.isWithdrawn()) {
-                System.out.println(String.format("%s\t\t\t%s", app.getJob().getJobID(), app.getJob().getStatus()));
-            } else {
-                withdrawnIDS += app.getJob().getJobID() +"\n";
-            } // END FOR
-        } // END FOR
-
-        System.out.println("\nWithdrawn application list:");
-        System.out.println(withdrawnIDS+"\n");
-    }
-
-    /**
-     * Will be used to print an application if it exists in the system or
-     * otherwise print an error message
-     * @param email is the email address of the applicant
-     * @param jobID is the jobID of the job opening
-     */
-    public void printApplication(String email, String jobID) {
-        Application foundApplication = getApplication(email, jobID);
-
-        if (foundApplication != null) {
-
-
-            String success = String.format("==============JOB APPLICATION DETAILS==============\n" +
-                            "Applicant email: %s\n" +
-                            "Job ID: %s\n" +
-                            "Submitted Cover Letter: %s\n" +
-                            "Submitted Resume: %s\n", email, jobID,
-                    foundApplication.getCoverLetter(), foundApplication.getResume());
-
-            System.out.println(success);
-
-        } else {
-            String failure = String.format("==========JOB APPLICATION DETAILS FAILURE==========\n" +
-                            "Applicant email: %s\n" +
-                            "Job ID: %s\n", email, jobID);
-
-        }
-
+          Application newApplication = new Application(tempJob,tempApp);
+          applications.add(newApplication);
+          System.out.println("==============JOB APPLICATION SUCCESS==============\n" + 
+                                "Applicant email: " + email + "\n" + 
+                                "Job ID: " + jobID + "\n");
     }
 
     /**
@@ -245,5 +189,9 @@ public class ApplicationManager {
         }
         // CHECK IF AN APPLICATION WITH THE EMAIL AND JOB ID EXISTS IN APPLICATIONS
         // IF IT DOES MARK AS WITHDRAWN
+        Application application = getApplication(email, jobID);
+        if(application != null){
+            application.setStatus("Withdrawn");
+        }
     }
 } // END CLASS
