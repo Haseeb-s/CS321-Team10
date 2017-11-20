@@ -38,7 +38,7 @@ public class ReportManager{
           set avgNumPostFilled to total number of applications for post filled jobs / number of applicants for post filled jobs
           set avgNumAppsAvailJobs to total number of applicants for avail jobs / number of available jobs
         */
-        ArrayList<Job> newJob = JobSystemCoordinator.jobManager.jobs;
+        ArrayList<Job> newJob = JobSystemCoordinator.jobManager.getJobs();
         int filledApplicants = 0, notAvailApplicants = 0, numberOfApplicants = 0;
         for(Job temp: newJob){
 
