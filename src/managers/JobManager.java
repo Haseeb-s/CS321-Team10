@@ -170,8 +170,11 @@ public class JobManager{
         }
         return null;
     }
-
+    public void viewSpecificJob(String jobID) {
+        System.out.println(getJobAtIndex(jobID).toString());
+    }
     public ArrayList<Job> getJobs(){
         return jobs;
     }
+
 }

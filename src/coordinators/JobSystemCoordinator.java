@@ -379,6 +379,7 @@ public class JobSystemCoordinator {
             // FIND A JOB WITH THE JOB ID IN THE JOB LIST
             // - IF JOB WAS FOUND PRINT
             // - ELSE PRINT ERROR
+            jobManager.viewSpecificJob(jobID);
             return "@18 VIEW A SPECIFIC JOB";
         }
 
