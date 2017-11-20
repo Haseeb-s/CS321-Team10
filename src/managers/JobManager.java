@@ -3,6 +3,7 @@ package managers;
 import java.util.ArrayList;
 import entities.Job;
 import coordinators.JobSystemCoordinator;
+import entities.Application;
 import java.time.LocalDateTime;
 
 /**
@@ -14,6 +15,7 @@ public class JobManager{
     ArrayList<Job> jobs = new ArrayList<Job>();
     Job currentJob;
     Timer time;
+    ArrayList<Application> appList;
 
     /**
      * Will initialize the Job Manager
@@ -146,7 +148,8 @@ public class JobManager{
             }
         }
         for(int i = 0; i <expiredJobs.size(); i++){
-            removeJob(expiredJobs.get(i));
+            currentJob = expiredJobs.get(i);
+            currentJob.setStatus("EXPIRED");
         }
         if(expiredJobs.size()!=0)
             return true;
@@ -155,12 +158,18 @@ public class JobManager{
 
     public void closeJobHiring(String jobID, String email)
     {
+        appList= JobSystemCoordinator.appManager.getPendingApplications(jobID);
         currentJob = getJobAtIndex(jobID);
-        currentJob.setStatus("CLOSED");
-        String success = String.format("============CLOSING A JOB SUCCESS==============\n" +
-                "Job ID: %s\n" +
-                "Hired Candidates: %s\n",jobID,email);
-        System.out.println(success);
+        for(Application app : appList) {
+            app.setStatus("Post no longer available!");
+        }
+        currentJob.setStatus("FILLED");
+                String success = String.format("============CLOSING A JOB SUCCESS==============\n" +
+                        "Job ID: %s\n" +
+                        "Hired Candidates: %s\n", currentJob.getJobID(), email);
+                System.out.println(success);
+
+
     }
 
     public Job getJobAtIndex(String jobID){
@@ -176,5 +185,21 @@ public class JobManager{
     public ArrayList<Job> getJobs(){
         return jobs;
     }
+    public void setUpInterview(String jobID, String email){
+        appList= JobSystemCoordinator.appManager.getPendingApplications(jobID);
+        currentJob = getJobAtIndex(jobID);
+        for(Application app : appList){
+            if(app.getApplicant().getEmail().equals(email)){
+                app.setStatus("Awaiting Interview");
+                String success = String.format("===========SETTING UP INTERVIEWS FOR A JOB========\n" +
+                        "Details of setting up interviews:\n" +
+                        "Job ID: %s\n" +
+                        "Candidate list: %s\n",currentJob.getJobID(),app.getApplicant().getEmail());
+                System.out.println(success);
 
+            }
+
+
+        }
+    }
 }
