@@ -37,6 +37,7 @@ public class Job {
         jobDescrip = "";
         salary = "$-1";
         expDate = JobSystemCoordinator.timer.getCurrentDate().plusYears(1);
+        numberofApplicants = 0;
     }
 
     /**
