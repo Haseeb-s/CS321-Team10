@@ -70,7 +70,8 @@ public class ReportManager{
             }
 
             if (numberofJobCreated != 0) {
-                avgNumApps = numberOfApplicants / numberofJobCreated;
+                System.out.println(numberOfApplicants +"/"+ numberofJobCreated);
+                avgNumApps = (double)numberOfApplicants / numberofJobCreated;
             }
 
             if (jobPostingsFilled != 0) {
