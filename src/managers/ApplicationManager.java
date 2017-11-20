@@ -47,7 +47,6 @@ public class ApplicationManager {
     /**
      * Searches and returns a list of job applications from the system
      * @param email the email of the applicant
-     * @param email the job ID
      * @return returns an ArrayList of Application instances
      */
     public ArrayList<Application> getApplicationsByUser(String email) {
@@ -62,7 +61,6 @@ public class ApplicationManager {
                 appList.add(app);
             } // END IF
         } // END FOR
-
 
         return appList;
     }
@@ -139,7 +137,7 @@ public class ApplicationManager {
             newApplication.setResume(resume);
             newApplication.setCoverLetter(coverLetter);
             applications.add(newApplication);
-            jobToApplyFor.newApplicant();
+            jobToApplyFor.newApplicant(); // INCREMENT APPLICANT COUNTER
             System.out.println(success);
 
             // OTHERWISE PRINT FAILURE MESSAGE
@@ -296,7 +294,7 @@ public class ApplicationManager {
         Application foundApplication = getApplication(email, jobID);
         if (foundApplication != null) { // APPLICATION EXISTS
             foundApplication.withdrawApplication();
-            foundApplication.getJob().lostApplicant();
+            foundApplication.getJob().lostApplicant(); // DECREMENT APPLICANT COUNTER
             System.out.println(success);
         } else {
             System.out.println(failure);
