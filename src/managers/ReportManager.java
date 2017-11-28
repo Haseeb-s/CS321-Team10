@@ -116,19 +116,22 @@ public class ReportManager{
 
         calculateAverages(monthyear);
         // build string displaying data in global variables in a readable format
-        return "=================MONTHLY STATISTICS================\n" +
+
+        return String.format("=================MONTHLY STATISTICS================\n" +
                 "Month : " + JobSystemCoordinator.timer.getCurrentDate().getMonth() + "\n" +
                 "Query type\t\t\t\t\t\t\t\t\tCount\n" +
                 "---------------------------------------------------\n" +
-                "Total job created: \t\t\t\t\t\t\t"+ numberofJobCreated +"\n" +
-                "Post filled status:\t\t\t\t\t\t\t" + jobPostingsFilled + "\n" +
-                "No longer available:\t\t\t\t\t\t" + jobsNoLongerAvailable + "\n" +
-                "Avg. applicants(all jobs):\t\t\t\t\t" + avgNumApps + "\n" +
-                "Avg. applicants(post filled):\t\t\t\t" + avgNumPostFilled + "\n" +
-                "Avg. applicants(no longer available):\t\t" + avgNumAppsNotAvailJobs + "\n" +
-                "Job listing (faculty):\t\t\t\t\t\t" +numJobListingsFaculty+ "\n" +
-                "Job listing (student):\t\t\t\t\t\t" +numJobListingsStudents+ "\n" +
-                "Job listing (staff):\t\t\t\t\t\t" +numJobListingsStaff+ "\n";
+                "Total job created: %28s\n" +
+                "Post filled status: %27s\n" +
+                "No longer available: %26s\n" +
+                "Avg. applicants(all jobs): %22s\n" +
+                "Avg. applicants(post filled): %19s\n" +
+                "Avg. applicants(no longer available): %11s\n" +
+                "Job listing (faculty): %24s\n" +
+                "Job listing (student): %24s\n" +
+                "Job listing (staff): %26s\n",numberofJobCreated,jobPostingsFilled,
+                jobsNoLongerAvailable,avgNumApps,avgNumPostFilled,avgNumAppsNotAvailJobs, numJobListingsFaculty,numJobListingsStudents,
+                numJobListingsStaff);
     }
 
 }
