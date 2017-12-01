@@ -67,5 +67,12 @@ Run the command from within the `src` directory.
 ![Branching Setup](/doc/branching.png?raw=true "Branching Setup")
 
 ## Testing
-- Will be setup by Mathias
+To compile/run the tests please run the following from the `src` directory
+
+`javac -cp ..:.:../test/junit-4.12.jar *.java ./entities/*.java ./managers/*.java ./coordinators/*.java`
+
+`java -cp .:../test/junit-4.12.jar:../test/hamcrest-core-1.3.jar managers/TestRunner`
+
+
+
 
