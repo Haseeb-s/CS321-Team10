@@ -11,11 +11,29 @@ Paul Brown
 
 ## Documentation
 
+### Getting the Code
+To create a local clone please use the following command
+
+`git clone https://github.com/Haseeb-s/CS321-Team10.git`
+
+### Directory structure
+Once you cloned the program you will have the following directories.
+
+1. `src` contains the source code for the program
+2. `doc` contains the java doc
+3. `test` contains files required to test the functionality of the program
+
+
+### Checkout the latest release
+To checkout the latest release please use the following command.
+
+`git checkout master`
+
 ### Running the Program
 
 You can run the program from the `src` directory with the following command.
 
-`javac *.java ./entities/*.java ./managers/*.java ./coordinators/*.java`
+`javac -cp .:../test/junit-4.12.jar *.java ./entities/*.java ./managers/*.java ./coordinators/*.java`
 
 `java FwClient ../test/job_sample-input.txt`
 
@@ -49,5 +67,12 @@ Run the command from within the `src` directory.
 ![Branching Setup](/doc/branching.png?raw=true "Branching Setup")
 
 ## Testing
-- Will be setup by Mathias
+To compile/run the tests please run the following from the `src` directory
+
+`javac -cp ..:.:../test/junit-4.12.jar *.java ./entities/*.java ./managers/*.java ./coordinators/*.java`
+
+`java -cp .:../test/junit-4.12.jar:../test/hamcrest-core-1.3.jar managers/TestRunner`
+
+
+
 

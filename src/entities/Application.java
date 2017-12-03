@@ -115,7 +115,6 @@ public class Application {
 
     /**
      * Withdrawing an application, changes the status
-     * @param currentDate expects the current date in the system
      */
     public void withdrawApplication() {
         this.dateWithdrawn = JobSystemCoordinator.timer.getCurrentDate();

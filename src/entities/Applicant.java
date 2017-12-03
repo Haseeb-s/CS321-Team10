@@ -67,7 +67,7 @@ public class Applicant{
 
     /**
      * Will set the phone number of the current applicant
-     * @param phoneNum will get the phone number from the user
+     * @param phoneNumber will get the phone number from the user
      */
     public void setPhoneNumber(String phoneNumber){
         this.phoneNumber = phoneNumber;
