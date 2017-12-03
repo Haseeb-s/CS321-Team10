@@ -149,7 +149,7 @@ public class ApplicationManager {
 
 
         // IF JOB AND APPLICANT EXIST CREATE APPLICATION OBJECT
-        if (jobToApplyFor != null && applicantApplying != null) {
+        if (jobToApplyFor != null && jobToApplyFor.getStatus() == "AVAILABLE" && applicantApplying != null) {
             Application newApplication = new Application(jobToApplyFor, applicantApplying);
             newApplication.setResume(resume);
             newApplication.setCoverLetter(coverLetter);
