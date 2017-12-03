@@ -54,18 +54,6 @@ J040913
 cover letter text
 resume text
 
-@3
-jsnow@nightwatch.com
-J040913
-cover letter text
-resume text
-
-@3
-starly@nightwatch.com
-J040913
-cover letter text
-resume text
-
 @4
 theimp@kingslanding.com
 J040913
@@ -77,43 +65,13 @@ jsnow@nightwatch.com
 jsnow@nightwatch.com
 J00123
 
-@6
-jsnow@nightwatch.com
-J040913
-
-@5
-jsnow@nightwatch.com
-
-@5
-theimp@kingslanding.com
-
 @10
 
 @17
 J040913
 
-@11
-J040913
-theimp@kingslanding.com
-
-@5
-theimp@kingslanding.com
-
-@5
-starly@nightwatch.com
-
 @8
 J010913
-
-@16
-J040913
-theimp@kingslanding.com
-
-@5
-theimp@kingslanding.com
-
-@5
-starly@nightwatch.com
 
 @9
 J020913

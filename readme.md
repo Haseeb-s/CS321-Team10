@@ -33,7 +33,7 @@ To checkout the latest release please use the following command.
 
 You can run the program from the `src` directory with the following command.
 
-`javac *.java ./entities/*.java ./managers/*.java ./coordinators/*.java`
+`javac -cp .:../test/junit-4.12.jar *.java ./entities/*.java ./managers/*.java ./coordinators/*.java`
 
 `java FwClient ../test/job_sample-input.txt`
 
