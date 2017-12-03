@@ -74,15 +74,15 @@ public class ReportManager{
             }
 
             if (numberofJobCreated != 0) {
-                avgNumApps = (double)numberOfApplicants / numberofJobCreated;
+                avgNumApps = (double)numberOfApplicants /(double) numberofJobCreated;
             }
 
             if (jobPostingsFilled != 0) {
-                avgNumPostFilled = filledApplicants / jobPostingsFilled;
+                avgNumPostFilled = (double)filledApplicants / jobPostingsFilled;
             }
 
             if (jobsNoLongerAvailable != 0) {
-                avgNumAppsNotAvailJobs = notAvailApplicants / jobsNoLongerAvailable;
+                avgNumAppsNotAvailJobs = (double) notAvailApplicants / jobsNoLongerAvailable;
             }
 
         }
@@ -103,11 +103,17 @@ public class ReportManager{
      * @return
      */
     public boolean checkDates (String monthYear, String date){
-       System.out.println("The job was created on : " + date);
+       // System.out.println("The job was created on : " + date);
         String month = monthYear.substring(0, monthYear.indexOf("/"));
         String year = monthYear.substring(monthYear.indexOf("/") + 1, monthYear.length());
         String checkYear = date.toString().substring(2,4);
         String checkMonth = date.toString().substring(5,7);
+
+        if ( !(month.matches("^[0-9]+$")) || !(year.matches("^[0-9]+$"))) {
+            return false;
+        }
+        if (Integer.parseInt(year) > JobSystemCoordinator.timer.getCurrentDate().getYear())
+            return false;
       //  System.out.println(month + year + " VS "+ checkMonth +"  " + checkYear);
         if (month.equals(checkMonth) && year.equals(checkYear))
             return true;
@@ -132,9 +138,9 @@ public class ReportManager{
                 "Total job created: %28s\n" +
                 "Post filled status: %27s\n" +
                 "No longer available: %26s\n" +
-                "Avg. applicants(all jobs): %22s\n" +
-                "Avg. applicants(post filled): %19s\n" +
-                "Avg. applicants(no longer available): %11s\n" +
+                "Avg. applicants(all jobs): %22.3f\n" +
+                "Avg. applicants(post filled): %19.3f\n" +
+                "Avg. applicants(no longer available): %11.3f\n" +
                 "Job listing (faculty): %24s\n" +
                 "Job listing (student): %24s\n" +
                 "Job listing (staff): %26s\n%s",numberofJobCreated,jobPostingsFilled,
