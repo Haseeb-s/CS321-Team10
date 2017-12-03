@@ -68,7 +68,6 @@ public class ApplicationManagerTests {
         applicationWithdrawn = JobSystemCoordinator.appManager.getApplication("jsnow@nightwatch.com", "J020100");
     }
 
-    @Ignore
     @Test
     public void getApplication01() {
         // TESTS IF THE APPLICATION IS ADDED CORRECTLY
@@ -81,7 +80,6 @@ public class ApplicationManagerTests {
     } // END TEST
 
 
-    @Ignore
     @Test
     public void getApplicationByUser01() {
         // TESTS IF THE APPLICATION IS BEING ADDED CORRECTLY TO THE SYSTEM
@@ -96,7 +94,6 @@ public class ApplicationManagerTests {
     } //end test
 
 
-    @Ignore
     @Test
     public void getPendingApplications01() {
         // TESTS IF THE APPLICATION IS BEING ADDED CORRECTLY TO THE SYSTEM
@@ -114,7 +111,6 @@ public class ApplicationManagerTests {
         assertEquals(0, applications.size());
     } //end test
 
-    @Ignore
     @Test
     public void submitApplication01() {
 
@@ -166,7 +162,6 @@ public class ApplicationManagerTests {
         assertEquals(0, success);
     }
 
-    @Ignore
     @Test
     public void printDashboard01() {
         int success;
@@ -190,7 +185,6 @@ public class ApplicationManagerTests {
         assertEquals(0, success);
     }
 
-    @Ignore
     @Test
     public void printApplication01() {
         int success;
@@ -209,7 +203,6 @@ public class ApplicationManagerTests {
         assertEquals(0, success);
     }
 
-    @Ignore
     @Test
     public void viewPendingJobApplications01() {
         int success;
@@ -226,7 +219,6 @@ public class ApplicationManagerTests {
         assertEquals(0, success);
     }
 
-    @Ignore
     @Test
     public void viewPendingJobApplications02() {
         int success;
