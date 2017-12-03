@@ -96,7 +96,7 @@ public class ApplicationManager {
      * @param coverLetter the applicants cover letter
      * @param resume the applicants resume
      */
-    public void submitApplication(String email, String jobID, String coverLetter, String resume) {
+    public int submitApplication(String email, String jobID, String coverLetter, String resume) {
 
         String success = String.format("==============JOB APPLICATION SUCCESS==============\n" +
                 "Applicant email: %s\n" +
@@ -109,7 +109,7 @@ public class ApplicationManager {
         Application application = getApplication(email, jobID);
         if (application != null ) {     // APPLICATION EXISTS ALREADY
             System.out.println(failure);
-            return;
+            return 0;
         }
 
         // CHECK IF THE JOB ID IS IN THE SYSTEM
@@ -139,10 +139,12 @@ public class ApplicationManager {
             applications.add(newApplication);
             jobToApplyFor.newApplicant(); // INCREMENT APPLICANT COUNTER
             System.out.println(success);
+            return 1;
 
             // OTHERWISE PRINT FAILURE MESSAGE
         } else {
             System.out.println(failure);
+            return 0;
         } // END IF ELSE
     }
 
@@ -150,16 +152,26 @@ public class ApplicationManager {
      * Prints the dashboard for a particular user showing the jobs and their status
      * @param email the email address of the user
      */
-    public void printDashboard(String email) {
+    public int printDashboard(String email) {
 
+        // IF APPLICANT DOES NOT EXIST PRINT ERROR AND RETURN
+        Applicant applicant = JobSystemCoordinator.signUpManager.getApplicantData(email);
+        if (applicant == null) {
+            String header = String.format("=========DASHBOARD ERROR - %s==========\n" +
+                    "User does not exist\n", email);
+            System.out.println(header);
+            return 0;
+        }
+
+        // IF THE USER EXISTS CONTINUE TO PRINT DASHBOARD
         String header = String.format("=========DASHBOARD - %s==========\n" +
                 "Job ID\t\t\t Status\n" +
                 "--------------------------------",email);
         System.out.println(header);
-
         String withdrawnIDS = "";
 
-        // ITERATE OVER APPLICANT LIST
+
+        // ITERATE OVER APPLICANT LIST TO FIND THE APPLICATIONS ASSOCIATED WITH THE USER
         ArrayList<Application> appList = getApplicationsByUser(email);
         for (Application app : appList) {
             if (!app.isWithdrawn()) {
@@ -171,6 +183,7 @@ public class ApplicationManager {
 
         System.out.println("\nWithdrawn application list:");
         System.out.println(withdrawnIDS+"\n");
+        return 1;
     }
 
     /**
@@ -179,12 +192,11 @@ public class ApplicationManager {
      * @param email is the email address of the applicant
      * @param jobID is the jobID of the job opening
      */
-    public void printApplication(String email, String jobID) {
+    public int printApplication(String email, String jobID) {
         Application foundApplication = getApplication(email, jobID);
 
+        // CHECK IF APPLICATION EXISTS IN THE SYSTEM
         if (foundApplication != null) {
-
-
             String success = String.format("==============JOB APPLICATION DETAILS==============\n" +
                             "Applicant email: %s\n" +
                             "Job ID: %s\n" +
@@ -193,11 +205,15 @@ public class ApplicationManager {
                     foundApplication.getCoverLetter(), foundApplication.getResume());
 
             System.out.println(success);
+            return 1;
 
+        // IF NO APPLICATION COULD BE FOUND PRINT AN ERROR MESSAGE
         } else {
             String failure = String.format("==========JOB APPLICATION DETAILS FAILURE==========\n" +
                     "Applicant email: %s\n" +
                     "Job ID: %s\n", email, jobID);
+            System.out.println(failure);
+            return 0;
 
         }
 
@@ -206,16 +222,26 @@ public class ApplicationManager {
     /**
      * Prints all the jobs in the system and the applications associated with them
      */
-    public void viewPendingJobApplications() {
+    public int viewPendingJobApplications() {
 
-        String header = String.format("==============PENDING JOB APPLICATIONS=============\n" +
-                "Job ID\t\t\t Applicant list\n" +
-                "----------------------------------------");
+        String header;
 
         String delimiter = "----------------------------------------";
 
         // GET THE JOBS FROM THE JOB MANAGER
         ArrayList<Job> jobs = JobSystemCoordinator.jobManager.getJobs();
+
+        if (jobs.size() == 0) {
+            header = String.format("==============PENDING JOB APPLICATIONS ERROR =============\n" +
+                    "There are no Jobs in the system\n");
+            System.out.println(header);
+            return 0;
+        }
+
+
+        header = String.format("==============PENDING JOB APPLICATIONS=============\n" +
+                "Job ID\t\t\t Applicant list\n" +
+                "----------------------------------------");
         // PRINT THE HEADER
         System.out.println(header);
         // ITERATE OVER EACH JOB AND CREATE A NEW ROW
@@ -242,13 +268,24 @@ public class ApplicationManager {
             } // END IF
         } // END FOR
         System.out.println("\n");
+
+        return 1;
     }
 
     /**
      * Print the pending job applications in the system to the console
      * @param jobID the ID of the job in the system
      */
-    public void viewPendingJobApplications(String jobID) {
+    public int viewPendingJobApplications(String jobID) {
+
+        Job job = JobSystemCoordinator.jobManager.getJobAtIndex(jobID);
+
+        if (job == null) {
+            String message = String.format("==========PENDING JOB APPLICATION for a JOB ERROR =======\n" +
+                    "Job ID: %s does not exist in the system\n", jobID);
+            System.out.println(message);
+            return 0;
+        }
 
         int applicantCounter = 0;
         String applicantEmails = "";
@@ -269,7 +306,15 @@ public class ApplicationManager {
                     "Applicant list: %s", jobID, applicantEmails);
             System.out.println(success);
             System.out.println("\n");
+            return 1;
+        } else {
+            String message = String.format("==========PENDING JOB APPLICATION for a JOB ERROR =======\n" +
+                    "No pending applications for Job ID: %s\n", jobID);
+            System.out.println(message);
+            return 0;
         }
+
+
 
     } // END VIEW PENDING JOB APPLICATIONS
 
@@ -279,7 +324,7 @@ public class ApplicationManager {
      * @param email the email address of the applicant
      * @param jobID the jobID
      */
-    public void withdrawApplication(String email, String jobID) {
+    public int withdrawApplication(String email, String jobID) {
 
         String success = String.format("==========WITHDRAWING APPLICATION SUCCESS==========\n" +
                 "Following job application successfully withdrawn:\n" +
@@ -296,8 +341,10 @@ public class ApplicationManager {
             foundApplication.withdrawApplication();
             foundApplication.getJob().lostApplicant(); // DECREMENT APPLICANT COUNTER
             System.out.println(success);
+            return 1;
         } else {
             System.out.println(failure);
+            return 0;
         }
         // CHECK IF AN APPLICATION WITH THE EMAIL AND JOB ID EXISTS IN APPLICATIONS
         // IF IT DOES MARK AS WITHDRAWN

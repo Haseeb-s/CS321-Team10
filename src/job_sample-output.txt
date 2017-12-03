@@ -1,0 +1,254 @@
+ ==================SIGN UP SUCCESS==================
+User successfully signed up with following information:
+Name: John Snow
+Email: jsnow@nightwatch.com
+Phone no: 571 571 5577
+Address: 22441, snow leaf ct. Winterfell
+Credit card: 3423 1232 4345 4343
+Expiration date: 11/20
+
+ ==================SIGN UP SUCCESS==================
+User successfully signed up with following information:
+Name: Tyrion Lannister
+Email: theimp@kingslanding.com
+Phone no: 671 671 5577
+Address: 22031, heaven bay, Casterly Rock
+Credit card: 9023 1232 4985 2243
+Expiration date: 11/22
+
+==================SIGN UP FAILURE==================
+User exists with given email address
+
+ ==================SIGN UP SUCCESS==================
+User successfully signed up with following information:
+Name: Samwell Tarly
+Email: starly@nightwatch.com
+Phone no: 271 271 2232
+Address: 22441, abcd ct. Falls church
+Credit card: 3423 1232 4345 4343
+Expiration date: 11/19
+
+================JOB POSTING SUCCESS================
+A new job has been posted with following details:
+Job ID: J010913
+Job Name: Asst. Professor
+Job Type: Faculty
+Salary: $90000
+Job Description: Assistant Professor in CS department
+Expiration Date: 10/31/17
+Contact email: universitycontact@hr.com
+
+================JOB POSTING SUCCESS================
+A new job has been posted with following details:
+Job ID: J020913
+Job Name: Asst. Professor
+Job Type: Faculty
+Salary: $92000
+Job Description: Assistant Professor in ECE department
+Expiration Date: 10/31/17
+Contact email: universitycontact@hr.com
+
+================JOB POSTING SUCCESS================
+A new job has been posted with following details:
+Job ID: J030913
+Job Name: Professor
+Job Type: Faculty
+Salary: $120000
+Job Description: Professor in CS department
+Expiration Date: 10/31/17
+Contact email: universitycontact@hr.com
+
+================JOB POSTING SUCCESS================
+A new job has been posted with following details:
+Job ID: J040913
+Job Name: Gym Front Desk
+Job Type: Student
+Salary: $20000
+Job Description: Management of front desk at University Gym
+Expiration Date: 10/31/17
+Contact email: universitycontact@hr.com
+
+================JOB POSTING SUCCESS================
+A new job has been posted with following details:
+Job ID: J050913
+Job Name: Shuttle Driver
+Job Type: Staff
+Salary: $60000
+Job Description: Driving university shuttle in several routes
+Expiration Date: 10/31/17
+Contact email: universitycontact@hr.com
+
+===============LIST OF AVAILABLE JOBS==============
+Job ID: J010913
+Job ID: J020913
+Job ID: J030913
+Job ID: J040913
+Job ID: J050913
+
+
+=================DETAILS OF A JOB=================
+Details of selected job are given below:
+Job ID: J020913
+Job Name: Asst. Professor
+Job Type: Faculty
+Salary: $92000
+Job Description: Assistant Professor in ECE department
+Expiration Date: 10/31/17
+Contact email: universitycontact@hr.com
+
+==============JOB APPLICATION SUCCESS==============
+Applicant email: theimp@kingslanding.com
+Job ID: J040913
+
+==============JOB APPLICATION SUCCESS==============
+Applicant email: jsnow@nightwatch.com
+Job ID: J040913
+
+==============JOB APPLICATION SUCCESS==============
+Applicant email: starly@nightwatch.com
+Job ID: J040913
+
+==============JOB APPLICATION DETAILS==============
+Applicant email: theimp@kingslanding.com
+Job ID: J040913
+Submitted Cover Letter: cover letter text
+Submitted Resume: resume text
+
+=========DASHBOARD - jsnow@nightwatch.com==========
+Job ID			 Status
+--------------------------------
+J040913			Submitted
+
+Withdrawn application list:
+
+
+==========WITHDRAWING APPLICATION FAILURE==========
+Job/User does not exist or application is not valid!
+
+==========WITHDRAWING APPLICATION SUCCESS==========
+Following job application successfully withdrawn:
+Applicant email: jsnow@nightwatch.com
+Job ID: J040913
+
+=========DASHBOARD - jsnow@nightwatch.com==========
+Job ID			 Status
+--------------------------------
+
+Withdrawn application list:
+J040913
+
+
+=========DASHBOARD - theimp@kingslanding.com==========
+Job ID			 Status
+--------------------------------
+J040913			Submitted
+
+Withdrawn application list:
+
+
+==============PENDING JOB APPLICATIONS=============
+Job ID			 Applicant list
+----------------------------------------
+J010913		
+----------------------------------------
+J020913		
+----------------------------------------
+J030913		
+----------------------------------------
+J040913		theimp@kingslanding.com,
+		starly@nightwatch.com,
+		----------------------------------------
+J050913		
+----------------------------------------
+
+
+==========PENDING JOB APPLICATION for a JOB=======
+Job ID: J040913
+Applicant list: theimp@kingslanding.com,
+		starly@nightwatch.com,
+		
+
+
+===========SETTING UP INTERVIEWS FOR A JOB========
+Details of setting up interviews:
+Job ID: J040913
+Candidate list: theimp@kingslanding.com
+
+=========DASHBOARD - theimp@kingslanding.com==========
+Job ID			 Status
+--------------------------------
+J040913			Awaiting Interview
+
+Withdrawn application list:
+
+
+=========DASHBOARD - starly@nightwatch.com==========
+Job ID			 Status
+--------------------------------
+J040913			Submitted
+
+Withdrawn application list:
+
+
+============REMOVING A JOB SUCCESS==============
+The job with ID J010913 has been removed successfully.
+
+============CLOSING A JOB SUCCESS==============
+Job ID: J040913
+Hired Candidates: theimp@kingslanding.com
+
+=========DASHBOARD - theimp@kingslanding.com==========
+Job ID			 Status
+--------------------------------
+J040913			Post no longer available!
+
+Withdrawn application list:
+
+
+=========DASHBOARD - starly@nightwatch.com==========
+Job ID			 Status
+--------------------------------
+J040913			Post no longer available!
+
+Withdrawn application list:
+
+
+=========JOB POSTING MODIFICATION SUCCESS=========
+A new job has been posted with following details:
+Job ID: J020913
+Job Name: Asst. Professor
+Job Type: Faculty
+Salary: $88000
+Job Description: Assistant Professor in ECE department
+Expiration Date: 12/31/2017
+Contact email: universitycontact@hr.com
+
+===============LIST OF AVAILABLE JOBS==============
+Job ID: J020913
+Job ID: J030913
+Job ID: J050913
+
+
+=================MONTHLY STATISTICS================
+Month : JANUARY
+Query type									Count
+---------------------------------------------------
+Total job created: 							0
+Post filled status:							0
+No longer available:						0
+Avg. applicants(all jobs):					0.0
+Avg. applicants(post filled):				0.0
+Avg. applicants(no longer available):		0.0
+Job listing (faculty):						0
+Job listing (student):						0
+Job listing (staff):						0
+
+=================EXPIRATION SIGNAL=================
+Any job listing without application which is past expiration
+the given date will be closed and marked as 'no longer available'
+=================MONTH END SIGNAL=================
+Withdrawn applications will be cleared from the system
+at end of each month.
+=================YEAR END SIGNAL=================
+Closed jobs will be cleared from the system
+at end of each year.

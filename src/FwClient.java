@@ -10,7 +10,8 @@ public class FwClient {
                 executeInstruction(instr);
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("The input file could not be found.");
+            //e.printStackTrace();
         }
     }
 

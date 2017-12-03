@@ -1,0 +1,145 @@
+================JOB POSTING SUCCESS================
+A new job has been posted with following details:
+Job ID: J010913
+Job Name: Asst. Professor
+Job Type: Faculty
+Salary: $90000
+Job Description: Assistant Professor in CS department
+Expiration Date: 10/31/17
+Contact email: universitycontact@hr.com
+
+================JOB POSTING SUCCESS================
+A new job has been posted with following details:
+Job ID: J020913
+Job Name: Asst. Professor
+Job Type: Faculty
+Salary: $92000
+Job Description: Assistant Professor in ECE department
+Expiration Date: 10/31/17
+Contact email: universitycontact@hr.com
+
+================JOB POSTING SUCCESS================
+A new job has been posted with following details:
+Job ID: J030913
+Job Name: Professor
+Job Type: Faculty
+Salary: $120000
+Job Description: Professor in CS department
+Expiration Date: 10/31/17
+Contact email: universitycontact@hr.com
+
+================JOB POSTING SUCCESS================
+A new job has been posted with following details:
+Job ID: J040913
+Job Name: Gym Front Desk
+Job Type: Student
+Salary: $20000
+Job Description: Management of front desk at University Gym
+Expiration Date: 10/31/17
+Contact email: universitycontact@hr.com
+
+================JOB POSTING SUCCESS================
+A new job has been posted with following details:
+Job ID: J050913
+Job Name: Shuttle Driver
+Job Type: Staff
+Salary: $60000
+Job Description: Driving university shuttle in several routes
+Expiration Date: 10/31/17
+Contact email: universitycontact@hr.com
+
+===============LIST OF AVAILABLE JOBS==============
+Job ID: J010913
+Job ID: J020913
+Job ID: J030913
+Job ID: J040913
+Job ID: J050913
+
+
+=================DETAILS OF A JOB=================
+Details of selected job are given below:
+Job ID: J020913
+Job Name: Asst. Professor
+Job Type: Faculty
+Salary: $92000
+Job Description: Assistant Professor in ECE department
+Expiration Date: 10/31/17
+Contact email: universitycontact@hr.com
+
+==============JOB APPLICATION FAILED==============
+Applicant email: theimp@kingslanding.com Job ID: J040913
+
+==========JOB APPLICATION DETAILS FAILURE==========
+Applicant email: theimp@kingslanding.com
+Job ID: J040913
+
+=========DASHBOARD ERROR - jsnow@nightwatch.com==========
+User does not exist
+
+==========WITHDRAWING APPLICATION FAILURE==========
+Job/User does not exist or application is not valid!
+
+==============PENDING JOB APPLICATIONS=============
+Job ID			 Applicant list
+----------------------------------------
+J010913		
+----------------------------------------
+J020913		
+----------------------------------------
+J030913		
+----------------------------------------
+J040913		
+----------------------------------------
+J050913		
+----------------------------------------
+
+
+==========PENDING JOB APPLICATION for a JOB ERROR =======
+No pending applications for Job ID: J040913
+
+============REMOVING A JOB SUCCESS==============
+The job with ID J010913 has been removed successfully.
+
+============CLOSING A JOB SUCCESS==============
+Job ID: J040913
+Hired Candidates: theimp@kingslanding.com
+
+=========JOB POSTING MODIFICATION SUCCESS=========
+A new job has been posted with following details:
+Job ID: J020913
+Job Name: Asst. Professor
+Job Type: Faculty
+Salary: $88000
+Job Description: Assistant Professor in ECE department
+Expiration Date: 12/31/2017
+Contact email: universitycontact@hr.com
+
+===============LIST OF AVAILABLE JOBS==============
+Job ID: J020913
+Job ID: J030913
+Job ID: J050913
+
+
+=================MONTHLY STATISTICS================
+Month : JANUARY
+Query type									Count
+---------------------------------------------------
+Total job created: 							0
+Post filled status:							0
+No longer available:						0
+Avg. applicants(all jobs):					0.0
+Avg. applicants(post filled):				0.0
+Avg. applicants(no longer available):		0.0
+Job listing (faculty):						0
+Job listing (student):						0
+Job listing (staff):						0
+
+=================EXPIRATION SIGNAL=================
+Any job listing without application which is past expiration
+the given date will be closed and marked as 'no longer available'
+=================MONTH END SIGNAL=================
+Withdrawn applications will be cleared from the system
+at end of each month.
+=================YEAR END SIGNAL=================
+Closed jobs will be cleared from the system
+at end of each year.
