@@ -13,10 +13,12 @@ import java.time.LocalDate;
 import coordinators.JobSystemCoordinator;
 import java.time.format.DateTimeFormatter;
 
+import static coordinators.JobSystemCoordinator.timer;
+
 public class Job {
     public String jobName, contactEmail, jobType, jobID, jobDescrip, salary;
     public String currentStatus;
-    private LocalDate creationDate = LocalDate.now();
+    private LocalDate creationDate = timer.getCurrentDate();
     private LocalDate expDate;
     private int numberofApplicants;
 
@@ -36,7 +38,7 @@ public class Job {
         jobID = "";
         jobDescrip = "";
         salary = "$-1";
-        expDate = JobSystemCoordinator.timer.getCurrentDate().plusYears(1);
+        expDate = timer.getCurrentDate().plusYears(1);
         numberofApplicants = 0;
     }
 
