@@ -1,0 +1,64 @@
+ ==================SIGN UP SUCCESS==================
+User successfully signed up with following information:
+Name: John Snow
+Email: jsnow@nightwatch.com
+Phone no: 571 571 5577
+Address: 22441, snow leaf ct. Winterfell
+Credit card: 3423 1232 4345 4343
+Expiration date: 11/20
+
+ ==================SIGN UP SUCCESS==================
+User successfully signed up with following information:
+Name: Tyrion Lannister
+Email: theimp@kingslanding.com
+Phone no: 671 671 5577
+Address: 22031, heaven bay, Casterly Rock
+Credit card: 9023 1232 4985 2243
+Expiration date: 11/22
+
+================JOB POSTING SUCCESS================
+A new job has been posted with following details:
+Job ID: J010913
+Job Name: Asst. Professor
+Job Type: Faculty
+Salary: $90000
+Job Description: Assistant Professor in CS department
+Expiration Date: 10/31/17
+Contact email: universitycontact@hr.com
+
+==============JOB APPLICATION SUCCESS==============
+Applicant email: jsnow@nightwatch.com
+Job ID: J010913
+
+==============JOB APPLICATION SUCCESS==============
+Applicant email: theimp@kingslanding.com
+Job ID: J010913
+
+=========DASHBOARD - jsnow@nightwatch.com==========
+Job ID                   Status
+--------------------------------
+J010913                 Submitted
+
+Withdrawn application list:
+
+
+===========SETTING UP INTERVIEWS FOR A JOB========
+Details of setting up interviews:
+Job ID: J010913
+Candidate list: jsnow@nightwatch.com
+
+============CLOSING A JOB SUCCESS==============
+Job ID: J010913
+Hired Candidates: jsnow@nightwatch.com
+
+=========DASHBOARD - theimp@kingslanding.com==========
+Job ID                   Status
+--------------------------------
+J010913                 Post no longer available!
+
+Withdrawn application list:
+
+
+==============JOB APPLICATION FAILED==============
+Applicant email: theimp@kingslanding.com Job ID: J010913
+
