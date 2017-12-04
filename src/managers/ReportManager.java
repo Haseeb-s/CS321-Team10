@@ -103,11 +103,14 @@ public class ReportManager{
      * @return
      */
     public boolean checkDates (String monthYear, String date){
+        if (monthYear.length() == 0)
+            return false;
        // System.out.println("The job was created on : " + date);
         String month = monthYear.substring(0, monthYear.indexOf("/"));
         String year = monthYear.substring(monthYear.indexOf("/") + 1, monthYear.length());
         String checkYear = date.toString().substring(2,4);
         String checkMonth = date.toString().substring(5,7);
+
 
         if ( !(month.matches("^[0-9]+$")) || !(year.matches("^[0-9]+$"))) {
             return false;
