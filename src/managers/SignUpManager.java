@@ -40,7 +40,7 @@ public class SignUpManager {
      * @param expirationDate the expiration date
      * @return returns an applicant instance
      */
-    public void addApplicant(String name, String email, String phone,
+    public boolean addApplicant(String name, String email, String phone,
                                   String address, String creditCard, String expirationDate) {
 
         String error = "==================SIGN UP FAILURE==================\n" +
@@ -51,7 +51,7 @@ public class SignUpManager {
             //System.out.println(applicant.getEmail());
             if (applicant.getEmail().equals(email)) {
                 System.out.println(error);
-                return;
+                return false;
             } // END IF
         } //
 
@@ -70,6 +70,6 @@ public class SignUpManager {
                 "Expiration date: %s\n", name, email, phone,
                 address, creditCard, expirationDate);
         System.out.println(success);
-        //return applicant;
+        return true;
     }
 }
