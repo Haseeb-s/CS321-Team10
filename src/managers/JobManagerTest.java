@@ -1,13 +1,17 @@
 
 package managers;
 
-import org.junit.*;
 import coordinators.JobSystemCoordinator;
+import entities.Applicant;
 import entities.Job;
 import entities.Application;
+import managers.ApplicationManager;
+import managers.JobManager;
+import managers.SignUpManager;
 import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 
 /**
  *
@@ -15,7 +19,60 @@ import static org.junit.Assert.*;
  */
 public class JobManagerTest {
     
+    private Applicant applicant;
+    private Application application;
+    private Application applicationWithdrawn;
+    private Job job;
+    
     public JobManagerTest() {
+    }
+    
+    @Before
+    public void setUp() throws Exception {
+        // SETTING UP THE SYSTEM FOR TESTING
+        System.out.println("Setting up tests for Application manager.\n");
+        JobSystemCoordinator.signUpManager = new SignUpManager();
+        JobSystemCoordinator.jobManager = new JobManager();
+        JobSystemCoordinator.appManager = new ApplicationManager();
+
+        JobSystemCoordinator.signUpManager.addApplicant(
+            "John Snow", "jsnow@nightwatch.com", "571 571 5577",
+            "22441, snow leaf ct. Winterfell", "3423 1232 4345 4343",
+            "11/20"
+        );
+
+        JobSystemCoordinator.jobManager.addJob(
+            "J020913", "Asst. Professor", "Faculty", "$90000",
+            "Assistant Professor in CS department", "10/31/17",
+            "universitycontact@hr.com"
+        );
+
+        JobSystemCoordinator.jobManager.addJob(
+                "J020100", "Janitor", "Faculty", "$200",
+                "Assistant Professor in CS department", "11/20/17",
+                "universitycontact@hr.com"
+        );
+
+        JobSystemCoordinator.appManager.submitApplication(
+            "jsnow@nightwatch.com", "J020913", "cover letter text",
+            "resume text"
+        );
+
+        JobSystemCoordinator.appManager.submitApplication(
+                "jsnow@nightwatch.com", "J020100", "will be withdrawn",
+                "resume will be withdrawn"
+        );
+
+        JobSystemCoordinator.appManager.submitApplication(
+                "jsnow@nightwatch.com", "J020100", "will be withdrawn",
+                "resume will be withdrawn"
+        );
+
+
+        applicant = JobSystemCoordinator.signUpManager.getApplicantData("jsnow@nightwatch.com");
+        job = JobSystemCoordinator.jobManager.getJobAtIndex("J020913");
+        application = JobSystemCoordinator.appManager.getApplication("jsnow@nightwatch.com", "J020913");
+        applicationWithdrawn = JobSystemCoordinator.appManager.getApplication("jsnow@nightwatch.com", "J020100");
     }
 
     /**
@@ -79,7 +136,7 @@ public class JobManagerTest {
         String salary6 = "$5000";
         String jobDescription6 = "To grade stuff.";
         String expirationDate6 = "08/08/2017";
-        String contactEmail6 = "getajob@hotmail.com";
+        String contactEmail6 = "get.ajob@hotmail.";
          //JOB INFORMATION (INVALID DUPLICATE INFO)
         String jobID7 = "J020913";
         String jobTitle7 = "Teaching Assistant";
@@ -258,31 +315,42 @@ public class JobManagerTest {
 
     /**
      * Test of closeJobHiring method, of class JobManager.
+     * Succeeds if it returns and prints a message with closed jobs.
      */
     @Test
     public void testCloseJobHiring() {
         System.out.println("closeJobHiring");
-        String jobID = "";
-        String email = "";
         JobManager instance = new JobManager();
-        instance.closeJobHiring(jobID, email);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        JobSystemCoordinator.jobManager.addJob(
+                "J010000", "Programmer", "Faculty", "$10000",
+                "Programming Chiev of Awesomness", "11/11/17",
+                "getajob2@hotmail.com"
+        );
+        Job expResult = new Job("J010000", "Programmer", "Faculty", "$10000",
+                "Programming Chiev of Awesomness", "11/11/17",
+                "getajob2@hotmail.com");
+        Job result = instance.getJobAtIndex("J010000");
+        instance.closeJobHiring("J010000", "getajob2@hotmail.com");
     }
 
     /**
      * Test of getJobAtIndex method, of class JobManager.
+     * Succeeds if it returns a job as the result and that result is equal to the expected result.
      */
     @Test
     public void testGetJobAtIndex() {
         System.out.println("getJobAtIndex");
-        String jobID = "";
         JobManager instance = new JobManager();
-        Job expResult = null;
-        Job result = instance.getJobAtIndex(jobID);
+        JobSystemCoordinator.jobManager.addJob(
+                "J010000", "Programmer", "Faculty", "$10000",
+                "Programming Chief of Awesomness", "11/11/17",
+                "getajob2@hotmail.com"
+        );
+        Job expResult = new Job("J010000", "Programmer", "Faculty", "$10000",
+                "Programming Chief of Awesomness", "10/10/17",
+                "getajob2@hotmail.com");
+        Job result = JobSystemCoordinator.jobManager.getJobAtIndex("J010000");
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -330,22 +398,30 @@ public class JobManagerTest {
      * Test of setUpInterview method, of class JobManager.
      * Expired, Filled, Available
      */
-    @Ignore
     @Test
     public void testSetUpInterview() {
         System.out.println("setUpInterview");
-        String jobID1 = "J030913";
-        String jobTitle1 = "Teaching Assistant";
-        String jobType1 = "Faculty";
-        String salary1 = "$5000";
-        String jobDescription1 = "To grade stuff.";
-        String expirationDate1 = "08/08/2017";
-        String contactEmail1 = "getajob@hotmail.com";
-        //ApplicationManager appList = JobSystemCoordinator.appManager.getPendingApplications(jobID1);
-        //Application app = new Application();
-        //JobManager instance = new JobManager();
-        //instance.addJob(jobID1, jobTitle1, jobType1, salary1, jobDescription1, expirationDate1, contactEmail1);
-        //instance.setUpInterview(jobID1, email);
+        // SUBMIT NEW APPLICATION THAT IS NOT YET IN THE SYSTEM
+        JobSystemCoordinator.signUpManager.addApplicant(
+                "Joe Doe", "joe@google.com", "481 251 0000",
+                "11, snow leaf ct. london", "123 4567 8901 2345",
+                "01/22"
+        );
+
+        JobSystemCoordinator.jobManager.addJob(
+                "J010000", "Programmer", "Faculty", "$10000",
+                "Programming Chiev of Awesomness", "11/11/17",
+                "universitycontact@hr.com"
+        );
+
+        JobSystemCoordinator.appManager.submitApplication(
+                "joe@google.com", "J010000", "really want to get the job",
+                "i am super awesome"
+        );
+        ArrayList<Application> applications = JobSystemCoordinator.appManager.getPendingApplications("J030913");
+        JobSystemCoordinator.jobManager.setUpInterview("J010000", "joe@google.com");
     }
     
 }
+
+
