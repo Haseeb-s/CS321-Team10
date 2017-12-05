@@ -1,6 +1,7 @@
 
 package managers;
 
+import org.junit.*;
 import coordinators.JobSystemCoordinator;
 import entities.Applicant;
 import entities.Job;
@@ -84,6 +85,7 @@ public class JobManagerTest {
      * Test 5 invalid experationDate
      * Test 6 invalid contactEmail
      */
+    @Ignore
     @Test
     public void testAddJob() {
         JobManager instance = new JobManager();
@@ -317,6 +319,7 @@ public class JobManagerTest {
      * Test of closeJobHiring method, of class JobManager.
      * Succeeds if it returns and prints a message with closed jobs.
      */
+    @Ignore
     @Test
     public void testCloseJobHiring() {
         System.out.println("closeJobHiring");
@@ -337,6 +340,7 @@ public class JobManagerTest {
      * Test of getJobAtIndex method, of class JobManager.
      * Succeeds if it returns a job as the result and that result is equal to the expected result.
      */
+    @Ignore
     @Test
     public void testGetJobAtIndex() {
         System.out.println("getJobAtIndex");
