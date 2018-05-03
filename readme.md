@@ -1,14 +1,13 @@
 # CS 321 - Team 10
 
 ## Members
-Matias Wiesbauer
+Matias W.
 
-Kevin Silvera
+Kevin S.
 
-Haseeb Shuaib
+Haseeb S.
 
-Paul Brown
-
+Paul B.
 ## Documentation
 
 ### Getting the Code
